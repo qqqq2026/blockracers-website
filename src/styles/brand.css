@@ -64,3 +64,5 @@ section.block{padding:48px 0}
 .cta-note{font-size:.85rem;color:var(--br-muted);margin:.6em 0 0}
 .br-section--sky .cta-note{color:var(--br-navy)}
 .header-cta{display:flex;flex-direction:column;align-items:center}
+.marker--draft{background:#fff;color:var(--br-ink);border:2px solid var(--br-ink)}
+.invite-form{display:grid;gap:12px;max-width:420px}.invite-form fieldset{border:0;padding:0;display:flex;gap:16px}.invite-form input[type=email]{padding:10px;border-radius:8px;border:2px solid currentColor;font:inherit}.invite-form [hidden]{display:none}

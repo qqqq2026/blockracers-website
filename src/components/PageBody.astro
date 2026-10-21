@@ -1,5 +1,5 @@
 ---
-import { PAGES, UI, BETA_URL, mark, u, type Lang } from '../data/site';
+import { PAGES, UI, INVITE, BETA_URL, mark, u, type Lang } from '../data/site';
 interface Props { lang: Lang; pageKey: string }
 const { lang, pageKey } = Astro.props;
 const page = PAGES.find((p) => p.key === pageKey)!;
@@ -21,6 +21,18 @@ const c = page.content[lang];
       {s.p?.map((t) => <p set:html={mark(t)} />)}
       {s.ul && <ul>{s.ul.map((t) => <li set:html={mark(t)} />)}</ul>}
       {s.gallery && <div class="gallery">{s.gallery.map((g) => <img src={u(`/img/screenshots/${g}.png`)} alt={`BlockRacers screenshot ${g.replace(/^\d+_/, '').replace(/_/g, ' ')}`} loading="lazy" />)}</div>}
+      {s.invite && (
+        <form class="invite-form" onsubmit="return false" aria-describedby="invite-note">
+          <fieldset><legend>{INVITE[lang].q}</legend>
+            <label><input type="radio" name="age" value="u16" /> {INVITE[lang].u16}</label>
+            <label><input type="radio" name="age" value="o16" /> {INVITE[lang].o16}</label>
+          </fieldset>
+          <div data-step="u16" hidden><p>{INVITE[lang].parent}</p><label>{INVITE[lang].pmail}<br /><input type="email" autocomplete="off" disabled /></label></div>
+          <div data-step="o16" hidden><label>{INVITE[lang].own}<br /><input type="email" autocomplete="off" disabled /></label></div>
+          <button class="br-btn br-btn--primary" type="button" disabled id="invite-note">{INVITE[lang].btn}</button>
+        </form>
+        <script is:inline>document.querySelectorAll('.invite-form input[name=age]').forEach(function(r){r.addEventListener('change',function(){document.querySelectorAll('.invite-form [data-step]').forEach(function(d){d.hidden=d.dataset.step!==r.value})})})</script>
+      )}
       {s.cta && <><p><a class="br-btn br-btn--primary" href={BETA_URL}>{UI[lang].play}</a></p><p class="cta-note">{UI[lang].testers}</p></>}
     </div>
   </section>

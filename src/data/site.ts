@@ -2,7 +2,7 @@
 // Rules: no invented facts, keep [TBD Daniel] and [LAWYER REVIEW] markers visible, no em or en dashes.
 
 export type Lang = 'nl' | 'en';
-export type Section = { h: string; p?: string[]; ul?: string[]; gallery?: string[]; sky?: boolean; cta?: boolean };
+export type Section = { h: string; p?: string[]; ul?: string[]; gallery?: string[]; sky?: boolean; cta?: boolean; invite?: boolean };
 export type Page = { key: string; slug: Record<Lang, string>; menu: Record<Lang, string>; hero: string;
   content: Record<Lang, { title: string; sub: string; sections: Section[] }> };
 
@@ -17,6 +17,10 @@ export const SOCIAL = {
     { label: 'X @BlkRacersHub', href: 'https://x.com/BlkRacersHub' },
     { label: 'TikTok @BlkRacersHub', href: 'https://www.tiktok.com/@BlkRacersHub' },
   ],
+};
+export const INVITE = {
+  nl: { q: 'Hoe oud ben je?', u16: 'Jonger dan 16', o16: '16 of ouder', parent: 'Onder 16: vraag een ouder om dit in te vullen. Alleen het e-mailadres van de ouder.', pmail: 'E-mailadres van je ouder', own: 'Je eigen e-mailadres', btn: 'Aanmelden opent binnenkort' },
+  en: { q: 'How old are you?', u16: 'Under 16', o16: '16 or older', parent: 'Under 16: ask a parent to fill this in. Only the parent\'s email address.', pmail: 'Parent\'s email address', own: 'Your own email address', btn: 'Sign-up opens soon' },
 };
 export const UI = {
   nl: { play: 'SPEEL DE BETA', testers: 'Alleen voor goedgekeurde testers', tagline: 'Bouw. Rijd. Bouw opnieuw.', draft: 'CONCEPT: niet gepubliceerd. Teksten met [TBD Daniel] of [LAWYER REVIEW] zijn niet definitief.', game: 'De game', studio: 'De studio', other: 'English', otherLang: 'en' as Lang },
@@ -70,6 +74,32 @@ export const PAGES: Page[] = [
         { h: 'Play the beta', sky: true, cta: true },
       ] },
     } },
+  { key: 'invite', slug: { nl: 'invite', en: 'invite' }, menu: { nl: 'Invite', en: 'Invite' }, hero: s('03_loop_stunt'),
+    content: {
+      nl: { title: 'VRAAG EEN INVITE AAN', sub: 'De beta heeft 200 plekken. Wil je testen? Vraag een invite aan.', sections: [
+        { h: 'Zo werkt het', p: ['De beta is invite-only en heeft 200 plekken. Daniel keurt invites in groepjes goed. Je krijgt een invite code per e-mail. [DRAFT, WACHT OP DANIEL]'], ul: ['1. Vertel ons je leeftijd.', '2. Onder 16? Dan vraagt een ouder de invite aan, met het e-mailadres van de ouder.', '3. 16 of ouder? Dan geef je alleen je eigen e-mailadres.', 'Meer vragen we niet. Geen naam, geen adres, geen telefoonnummer.'] },
+        { h: 'Aanmelden', invite: true, p: ['Aanmelden opent binnenkort. Het formulier verstuurt nog niets. [DRAFT, WACHT OP DANIEL] [LAWYER REVIEW]'] },
+        { h: 'Heb je een invite code?', sky: true, p: ['Top! Ga naar game.blockracers.online en maak daar je account. Vul je code in als je je aanmeldt. De game checkt de code. [DRAFT, WACHT OP DANIEL]', 'Een code ziet eruit als BR-XXXX-XXXX. Elke code werkt maar een keer en hoort bij het e-mailadres waarop je de invite kreeg. [DRAFT, WACHT OP DANIEL]'], cta: true },
+      ] },
+      en: { title: 'REQUEST AN INVITE', sub: 'The beta has 200 spots. Want to test? Request an invite.', sections: [
+        { h: 'How it works', p: ['The beta is invite-only and has 200 spots. Daniel approves invites in small batches. You get an invite code by email. [DRAFT, WACHT OP DANIEL]'], ul: ['1. Tell us your age.', '2. Under 16? Then a parent requests the invite, with the parent\'s email address.', '3. 16 or older? Then you only give your own email address.', 'That is all we ask. No name, no address, no phone number.'] },
+        { h: 'Sign up', invite: true, p: ['Sign-up opens soon. The form does not send anything yet. [DRAFT, WACHT OP DANIEL] [LAWYER REVIEW]'] },
+        { h: 'Got an invite code?', sky: true, p: ['Nice! Go to game.blockracers.online and create your account there. Enter your code when you sign up. The game checks the code. [DRAFT, WACHT OP DANIEL]', 'A code looks like BR-XXXX-XXXX. Each code works only once and belongs to the email address the invite was sent to. [DRAFT, WACHT OP DANIEL]'], cta: true },
+      ] },
+    } },
+  { key: 'account', slug: { nl: 'account', en: 'account' }, menu: { nl: 'Account', en: 'Account' }, hero: s('13_phone_start'),
+    content: {
+      nl: { title: 'JE ACCOUNT', sub: 'Inloggen, je gegevens en je account verwijderen.', sections: [
+        { h: 'Inloggen', ul: ['Vul je e-mailadres in op game.blockracers.online.', 'Je krijgt een code van 6 cijfers per e-mail.', 'Vul de code in. Klaar. Geen wachtwoord nodig.'], p: ['Je hebt een invite code nodig om een account te maken. [DRAFT, WACHT OP DANIEL]'] },
+        { h: 'Wat andere spelers zien', p: ['Je bijnaam (max 16 tekens, geen echte naam), je avatar, coins, level en beste tijden. [LAWYER REVIEW]'] },
+        { h: 'Account verwijderen', p: ['Er is nog geen verwijderknop in de game. Die komt later.', 'Wil je je account laten verwijderen? Mail naar privacy@blockracers.online. De studio verwerkt je verzoek. We verwijderen dan je profiel, je saves en de meldingen die jij hebt gedaan. [LAWYER REVIEW]', 'Ben je onder 16? Vraag een ouder om te mailen. [LAWYER REVIEW]'] },
+      ] },
+      en: { title: 'YOUR ACCOUNT', sub: 'Logging in, your data and deleting your account.', sections: [
+        { h: 'Logging in', ul: ['Enter your email address at game.blockracers.online.', 'You get a 6-digit code by email.', 'Enter the code. Done. No password needed.'], p: ['You need an invite code to create an account. [DRAFT, WACHT OP DANIEL]'] },
+        { h: 'What other players see', p: ['Your nickname (max 16 characters, no real names), your avatar, coins, level and best times. [LAWYER REVIEW]'] },
+        { h: 'Delete your account', p: ['There is no delete button in the game yet. It comes later.', 'Want your account deleted? Email privacy@blockracers.online. The studio handles your request. We then delete your profile, your saves and the reports you made. [LAWYER REVIEW]', 'Under 16? Ask a parent to email us. [LAWYER REVIEW]'] },
+      ] },
+    } },
   { key: 'devlog', slug: { nl: 'devlog', en: 'devlog' }, menu: { nl: 'Devlog', en: 'Devlog' }, hero: s('01_hero_street'),
     content: {
       nl: { title: 'DEVLOG', sub: 'Eerlijke updates over wat er veranderd is, in korte posts.', sections: [
@@ -106,12 +136,14 @@ export const PAGES: Page[] = [
   { key: 'parents', slug: { nl: 'ouders-en-privacy', en: 'parents-and-privacy' }, menu: { nl: 'Ouders en privacy', en: 'Parents and privacy' }, hero: s('02_players_avatars'),
     content: {
       nl: { title: 'OUDERS EN PRIVACY', sub: 'Jij bepaalt wat veilig voelt. Wij leggen het eerlijk uit.', sections: [
-        { h: 'Kort en eerlijk', p: ['BlockRacers is een beta. Alleen goedgekeurde testers spelen nu mee. Kinderen bouwen auto\'s en rijden door een blokkenwereld. [TBD Daniel: wat slaat de game op] [LAWYER REVIEW]'] },
+        { h: 'Kort en eerlijk', p: ['BlockRacers is een beta. Alleen goedgekeurde testers spelen nu mee. Kinderen bouwen auto\'s en rijden door een blokkenwereld. Zie hieronder wat de game opslaat. [LAWYER REVIEW]'] },
         { h: 'Wat is BlockRacers?', p: ['BlockRacers is een game waarin je je eigen auto bouwt, ermee rijdt en opnieuw bouwt. Bouw. Rijd. Bouw opnieuw. De beta is beperkt en alleen voor goedgekeurde testers.'] },
-        { h: 'Welke gegevens verzamelen we van kinderen?', p: ['De game heeft login, opslag en multiplayer via Supabase (EU, Frankfurt). [TBD Daniel: wat slaat de game op] [LAWYER REVIEW]', '[LAWYER REVIEW: of technische gegevens zoals IP-adres of apparaatgegevens onder persoonsgegevens vallen, en wat we hierover moeten zeggen]'] },
-        { h: 'Wat kunnen spelers met elkaar doen?', p: ['Er is nog geen chat. [TBD Daniel: wat spelers samen kunnen doen]', '[LAWYER REVIEW: tekst over contact tussen spelers en veiligheid]'] },
-        { h: 'Veiligheid', p: ['We willen dat BlockRacers een fijne plek is voor kinderen en gezinnen. Er is nog geen moderatie en nog geen meldknop. [TBD Daniel] [LAWYER REVIEW]', 'Zie je iets wat niet klopt? Laat het weten via het contactformulier. [TBD Daniel]'] },
-        { h: 'Aankopen en reclame', p: ['Er zijn geen aankopen in de game. Je kunt alleen doneren. [TBD Daniel donatielink] [TBD Daniel: reclame]', '[LAWYER REVIEW: tekst over aankopen, reclame en kinderen]'] },
+        { h: 'Welke gegevens slaan we op?', p: ['De game draait op Supabase, in de EU (Frankfurt). [LAWYER REVIEW]'], ul: ['Account: e-mailadres, wanneer je inlogt en technische sessiegegevens.', 'Profiel, zichtbaar voor andere spelers: bijnaam (max 16 tekens, geen echte namen), avatar, coins, level, beste tijden en datums.', 'Saves, alleen voor jou: voortgang, garage, upgrades en instellingen.', 'Meldingen: wie wie meldt, een reden (naam, gedrag, bug, anders), een korte notitie van max 300 tekens, status en datum.', 'Live rijden: je positie gaat live naar andere spelers en wordt niet opgeslagen.'] },
+        { h: 'E-mail', p: ['Inlogcodes en invites sturen we per e-mail via Resend. [DRAFT, WACHT OP DANIEL] [LAWYER REVIEW]'] },
+        { h: 'Wat kunnen spelers met elkaar doen?', p: ['Samen rijden in de wereld. Alleen ingelogde spelers die niet geblokkeerd zijn door de studio kunnen meedoen. Er is geen vrije chat. [LAWYER REVIEW]'] },
+        { h: 'Veiligheid', p: ['Zie je iets wat niet klopt? Meld een speler in de game. Kies een reden: naam, gedrag, bug of anders. De studio bekijkt meldingen en kan spelers verbergen of uitsluiten. [LAWYER REVIEW]'] },
+        { h: 'Gegevens laten verwijderen', p: ['Mail naar privacy@blockracers.online. De studio verwijdert je profiel, saves en jouw meldingen. Lees meer op de pagina Account. [LAWYER REVIEW]'] },
+        { h: 'Aankopen en reclame', p: ['Er zijn geen aankopen in de game. Je kunt alleen doneren. [TBD Daniel donatielink] Er is geen reclame en geen tracking van derden.', '[LAWYER REVIEW: tekst over aankopen, reclame en kinderen]'] },
         { h: 'Cookies en trackers', p: ['[TBD Daniel: gebruikt de site of game cookies, analytics of trackers? Welke?]', '[LAWYER REVIEW: cookietekst en toestemming]'] },
         { h: 'Wat kun jij als ouder doen?', ul: ['Speel een keer samen met je kind.', 'Praat over wat je kind online doet.', 'Heb je een vraag of zorg? Gebruik het contactformulier. [TBD Daniel] [LAWYER REVIEW]'], p: ['Rechten van ouders en kinderen, zoals inzage en verwijdering: [LAWYER REVIEW]'] },
         { h: 'Wie is verantwoordelijk voor de gegevens?', p: ['BlockRacers Studio, onderdeel van Grachten Holding B.V. [TBD Daniel: KvK-nummer, adres] [LAWYER REVIEW]', 'Functionaris gegevensbescherming of contactpersoon privacy: [TBD Daniel]. [LAWYER REVIEW]'] },
@@ -120,12 +152,14 @@ export const PAGES: Page[] = [
         { h: 'Wijzigingen', p: ['Deze pagina kan veranderen. Laatst bijgewerkt: [TBD Daniel: datum bij publicatie]. [LAWYER REVIEW]'], gallery: ['02_players_avatars', '08_avatar_creator', '12_phone_driving'] },
       ] },
       en: { title: 'PARENTS AND PRIVACY', sub: 'You decide what feels safe. We explain it honestly.', sections: [
-        { h: 'Short and honest', p: ['BlockRacers is a beta. Only approved testers play right now. Kids build cars and drive through a world made of blocks. [TBD Daniel: what does the game store] [LAWYER REVIEW]'] },
+        { h: 'Short and honest', p: ['BlockRacers is a beta. Only approved testers play right now. Kids build cars and drive through a world made of blocks. See below what the game stores. [LAWYER REVIEW]'] },
         { h: 'What is BlockRacers?', p: ['BlockRacers is a game where you build your own car, drive it and build it again. Build it. Drive it. Build it again. The beta is limited and for approved testers only.'] },
-        { h: 'What data do we collect from children?', p: ['The game has login, saves and multiplayer through Supabase (EU, Frankfurt). [TBD Daniel: what does the game store] [LAWYER REVIEW]', '[LAWYER REVIEW: whether technical data such as IP address or device data counts as personal data, and what we must say about it]'] },
-        { h: 'What can players do with each other?', p: ['There is no chat yet. [TBD Daniel: what players can do together]', '[LAWYER REVIEW: text about contact between players and safety]'] },
-        { h: 'Safety', p: ['We want BlockRacers to be a good place for kids and families. There is no moderation and no report button yet. [TBD Daniel] [LAWYER REVIEW]', 'See something wrong? Let us know through the contact form. [TBD Daniel]'] },
-        { h: 'Purchases and ads', p: ['There are no purchases in the game. You can only donate. [TBD Daniel donatielink] [TBD Daniel: ads]', '[LAWYER REVIEW: text about purchases, ads and children]'] },
+        { h: 'What data do we store?', p: ['The game runs on Supabase, in the EU (Frankfurt). [LAWYER REVIEW]'], ul: ['Account: email address, when you log in and technical session data.', 'Profile, visible to other players: nickname (max 16 characters, no real names), avatar, coins, level, best times and dates.', 'Saves, only for you: progress, garage, upgrades and settings.', 'Reports: who reports whom, a reason (name, behaviour, bug, other), a short note of max 300 characters, status and date.', 'Live driving: your position is sent live to other players and is not stored.'] },
+        { h: 'Email', p: ['We send login codes and invites by email through Resend. [DRAFT, WACHT OP DANIEL] [LAWYER REVIEW]'] },
+        { h: 'What can players do with each other?', p: ['Drive together in the world. Only logged-in players who are not banned by the studio can join. There is no free chat. [LAWYER REVIEW]'] },
+        { h: 'Safety', p: ['See something wrong? Report a player in the game. Pick a reason: name, behaviour, bug or other. The studio reviews reports and can hide or ban players. [LAWYER REVIEW]'] },
+        { h: 'Getting data deleted', p: ['Email privacy@blockracers.online. The studio deletes your profile, saves and your reports. Read more on the Account page. [LAWYER REVIEW]'] },
+        { h: 'Purchases and ads', p: ['There are no purchases in the game. You can only donate. [TBD Daniel donatielink] There are no ads and no third-party tracking.', '[LAWYER REVIEW: text about purchases, ads and children]'] },
         { h: 'Cookies and trackers', p: ['[TBD Daniel: does the site or game use cookies, analytics or trackers? Which ones?]', '[LAWYER REVIEW: cookie text and consent]'] },
         { h: 'What can you do as a parent?', ul: ['Play together with your child once.', 'Talk about what your child does online.', 'Questions or worries? Use the contact form. [TBD Daniel] [LAWYER REVIEW]'], p: ['Rights of parents and children, such as access and deletion: [LAWYER REVIEW]'] },
         { h: 'Who is responsible for the data?', p: ['BlockRacers Studio, part of Grachten Holding B.V. [TBD Daniel: company registration number, address] [LAWYER REVIEW]', 'Data protection officer or privacy contact: [TBD Daniel]. [LAWYER REVIEW]'] },
@@ -186,6 +220,6 @@ export const href = (lang: Lang, slug: string) => u((lang === 'nl' ? '/' : '/en/
 // Escape text and wrap [TBD ...] and [LAWYER REVIEW ...] markers in visible badges.
 export function mark(t: string): string {
   const esc = t.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
-  return esc.replace(/\[(TBD[^\]]*|LAWYER REVIEW[^\]]*)\]/g, (_m, inner: string) =>
-    `<span class="marker ${inner.startsWith('TBD') ? 'marker--tbd' : 'marker--lawyer'}">[${inner}]</span>`);
+  return esc.replace(/\[(TBD[^\]]*|LAWYER REVIEW[^\]]*|DRAFT[^\]]*|CHECK BUDDY[^\]]*)\]/g, (_m, inner: string) =>
+    `<span class="marker ${inner.startsWith('TBD') ? 'marker--tbd' : inner.startsWith('LAWYER') ? 'marker--lawyer' : 'marker--draft'}">[${inner}]</span>`);
 }
