@@ -23,11 +23,14 @@ const other = ui.otherLang;
   <body>
     <header class="site-header">
       <div class="wrap">
-        <a class="logo" href={href(lang, '')}><img src={u("/img/logo/wordmark_on_dark_transparent.png")} alt="BlockRacers" /></a>
+        <a class="logo" href={href(lang, '')} aria-label="BlockRacers, Home"><span class="logo-word" aria-hidden="true">BLOCK<span>RACERS</span></span></a>
+        <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="site-menu" hidden><span class="nav-toggle-bars" aria-hidden="true"></span><span class="nav-toggle-label">{lang === 'nl' ? 'Menu' : 'Menu'}</span></button>
+        <div class="site-menu" id="site-menu">
         <nav class="site-nav" aria-label="Menu">
-          {PAGES.map((p) => <a href={href(lang, p.slug[lang])} aria-current={p.key === pageKey ? 'page' : undefined}>{p.menu[lang]}</a>)}
+          {PAGES.filter((p) => p.nav !== false).map((p) => <a href={href(lang, p.slug[lang])} aria-current={p.key === pageKey ? 'page' : undefined}>{p.menu[lang]}</a>)}
         </nav>
         <span class="lang"><a href={href(other, current.slug[other])} hreflang={other}>{ui.other}</a></span>
+        </div>
         <span class="header-cta"><a class="br-btn br-btn--primary" href={BETA_URL}>{ui.play}</a><small class="cta-note">{ui.testers}</small></span>
       </div>
     </header>
@@ -44,5 +47,6 @@ const other = ui.otherLang;
         </div>
       </div>
     </footer>
+    <script is:inline>(function(){var b=document.querySelector('.nav-toggle'),m=document.getElementById('site-menu');if(!b||!m)return;document.documentElement.classList.add('js-nav');b.hidden=false;function set(o){b.setAttribute('aria-expanded',o?'true':'false');m.classList.toggle('is-open',o)}b.addEventListener('click',function(){set(b.getAttribute('aria-expanded')!=='true')});document.addEventListener('keydown',function(e){if(e.key==='Escape'&&b.getAttribute('aria-expanded')==='true'){set(false);b.focus()}});matchMedia('(min-width:900px)').addEventListener('change',function(e){if(e.matches)set(false)})})();</script>
   </body>
 </html>

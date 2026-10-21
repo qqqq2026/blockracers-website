@@ -3,7 +3,7 @@
 
 export type Lang = 'nl' | 'en';
 export type Section = { h: string; p?: string[]; ul?: string[]; gallery?: string[]; sky?: boolean; cta?: boolean; invite?: boolean; soon?: boolean; links?: { label: string; href: string }[]; download?: { label: string; href: string } };
-export type Page = { key: string; slug: Record<Lang, string>; menu: Record<Lang, string>; hero: string;
+export type Page = { key: string; slug: Record<Lang, string>; menu: Record<Lang, string>; hero: string; nav?: boolean;
   content: Record<Lang, { title: string; sub: string; sections: Section[] }> };
 
 export const SITE_URL = 'https://www.blockracers.online';
@@ -76,7 +76,7 @@ export const PAGES: Page[] = [
         { h: 'Play the beta', sky: true, cta: true },
       ] },
     } },
-  { key: 'invite', slug: { nl: 'invite', en: 'invite' }, menu: { nl: 'Invite', en: 'Invite' }, hero: s('03_loop_stunt'),
+  { key: 'invite', nav: false, slug: { nl: 'invite', en: 'invite' }, menu: { nl: 'Invite', en: 'Invite' }, hero: s('03_loop_stunt'),
     content: {
       nl: { title: 'VRAAG EEN INVITE AAN', sub: 'De beta heeft 200 plekken. Wil je testen? Vraag een invite aan.', sections: [
         { h: 'Zo werkt het', p: ['De beta is invite-only en heeft 200 plekken. Daniel keurt invites in groepjes goed. Je krijgt een invite code per e-mail.'], ul: ['1. Vertel ons je leeftijd.', '2. Onder 16? Dan vraagt een ouder de invite aan, met het e-mailadres van de ouder.', '3. 16 of ouder? Dan geef je alleen je eigen e-mailadres.', 'Meer vragen we niet. Geen naam, geen adres, geen telefoonnummer.'] },
@@ -89,7 +89,7 @@ export const PAGES: Page[] = [
         { h: 'Got an invite code?', sky: true, p: ['Nice! Go to game.blockracers.online and create your account there. Enter your code when you sign up. The game checks the code.', 'A code looks like BR-XXXX-XXXX. Each code works only once and belongs to the email address the invite was sent to.'], cta: true },
       ] },
     } },
-  { key: 'account', slug: { nl: 'account', en: 'account' }, menu: { nl: 'Account', en: 'Account' }, hero: s('13_phone_start'),
+  { key: 'account', nav: false, slug: { nl: 'account', en: 'account' }, menu: { nl: 'Account', en: 'Account' }, hero: s('13_phone_start'),
     content: {
       nl: { title: 'JE ACCOUNT', sub: 'Inloggen, je gegevens en je account verwijderen.', sections: [
         { h: 'Inloggen', ul: ['Vul je e-mailadres in op game.blockracers.online.', 'Je krijgt een code van 6 cijfers per e-mail.', 'Vul de code in. Klaar. Geen wachtwoord nodig.'], p: ['Je hebt een invite code nodig om een account te maken.'] },
