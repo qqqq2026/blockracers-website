@@ -1,0 +1,14 @@
+---
+import Base from '../layouts/Base.astro';
+import PageBody from '../components/PageBody.astro';
+import { PAGES } from '../data/site';
+export function getStaticPaths() {
+  return PAGES.flatMap((p) => [
+    { params: { slug: p.slug.nl || undefined }, props: { lang: 'nl' as const, key: p.key } },
+    { params: { slug: 'en' + (p.slug.en ? '/' + p.slug.en : '') }, props: { lang: 'en' as const, key: p.key } },
+  ]);
+}
+const { lang, key } = Astro.props;
+const title = PAGES.find((p) => p.key === key)!.content[lang].title;
+---
+<Base lang={lang} pageKey={key} title={title}><PageBody lang={lang} pageKey={key} /></Base>

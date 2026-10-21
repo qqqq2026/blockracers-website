@@ -1,0 +1,68 @@
+/* BlockRacers brand tokens and base components.
+   Based on BlockRacers_brand_kit/brand.css. Fonts are self-hosted (no Google Fonts, no CDN). */
+@font-face{font-family:'Bungee';src:url('../fonts/Bungee-Regular.ttf') format('truetype');font-weight:400;font-display:swap}
+@font-face{font-family:'Chakra Petch';src:url('../fonts/ChakraPetch-Medium.ttf') format('truetype');font-weight:500;font-display:swap}
+@font-face{font-family:'Chakra Petch';src:url('../fonts/ChakraPetch-SemiBold.ttf') format('truetype');font-weight:600;font-display:swap}
+@font-face{font-family:'Chakra Petch';src:url('../fonts/ChakraPetch-Bold.ttf') format('truetype');font-weight:700;font-display:swap}
+
+:root{
+  --br-navy:#0e1930;--br-raise:#1a2a4a;--br-yellow:#ffc23d;--br-yellow-edge:#c4901b;--br-ink:#231800;
+  --br-red:#d7263d;--br-sky:#4a9be8;--br-grass:#8fe36a;--br-go:#52d48f;--br-text:#eef2f8;--br-muted:#a3b3cc;
+  --br-line:rgba(214,226,255,.14);
+  --br-upgrades:#d7263d;--br-tasks:#2e7d32;--br-garage:#2e62c9;--br-players:#7b3fe4;--br-tuning:#ff7a1a;
+  --br-font-display:'Bungee','Arial Black',Impact,sans-serif;
+  --br-font-ui:'Chakra Petch','Segoe UI',system-ui,sans-serif;
+  --br-radius:16px;
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--br-navy);color:var(--br-text);font-family:var(--br-font-ui);font-weight:500;line-height:1.5}
+img{max-width:100%;height:auto;display:block}
+a{color:var(--br-yellow)}
+h1,h2,.br-display{font-family:var(--br-font-display);font-weight:400;text-transform:uppercase;line-height:.95;margin:0 0 .5em}
+h1{font-size:clamp(2rem,7vw,4.5rem)}
+h2{font-size:clamp(1.4rem,4vw,2.2rem)}
+h3,h4{font-family:var(--br-font-ui);font-weight:700}
+.br-label{font-weight:700;font-size:.8rem;letter-spacing:.2em;text-transform:uppercase;color:var(--br-muted)}
+.br-btn{display:inline-flex;align-items:center;font-family:var(--br-font-display);text-transform:uppercase;font-size:1.1rem;padding:.9em 1.6em;border-radius:14px;border:0;cursor:pointer;text-decoration:none;min-height:44px}
+.br-btn--primary{background:var(--br-yellow);color:var(--br-ink);box-shadow:0 6px 0 var(--br-yellow-edge)}
+.br-btn--primary:active{transform:translateY(3px);box-shadow:0 2px 0 var(--br-yellow-edge)}
+.br-btn--secondary{background:var(--br-raise);color:var(--br-text);border:2px solid var(--br-line);font-family:var(--br-font-ui);font-weight:600;text-transform:none}
+.br-card{background:var(--br-raise);border:1px solid var(--br-line);border-radius:var(--br-radius);padding:24px}
+.br-pill{display:inline-block;background:var(--br-yellow);color:var(--br-ink);font-family:var(--br-font-display);border-radius:999px;padding:.4em 1em}
+.br-checker{height:16px;background:repeating-linear-gradient(90deg,#fff 0 16px,#111 16px 32px)}
+.br-hero{position:relative;min-height:60vh;display:flex;flex-direction:column;justify-content:flex-end;background-size:cover;background-position:center}
+.br-hero::before{content:"";position:absolute;inset:0;background:linear-gradient(0deg,rgba(14,25,48,.95),rgba(14,25,48,.2) 60%,rgba(14,25,48,0))}
+.br-hero > *{position:relative}
+.br-section--sky{background:var(--br-sky);color:var(--br-navy)}
+.br-section--sky a{color:var(--br-navy)}
+
+/* Layout */
+.wrap{max-width:1100px;margin:0 auto;padding:0 20px}
+.draft-banner{background:var(--br-red);color:#fff;text-align:center;font-weight:700;padding:8px 12px;font-size:.9rem}
+.site-header{background:var(--br-navy);border-bottom:1px solid var(--br-line)}
+.site-header .wrap{display:flex;align-items:center;gap:16px;flex-wrap:wrap;padding-top:12px;padding-bottom:12px}
+.site-header .logo img{height:40px;width:auto}
+.site-nav{display:flex;flex-wrap:wrap;gap:4px;flex:1}
+.site-nav a{color:var(--br-text);text-decoration:none;font-weight:600;padding:10px 10px;min-height:44px;display:inline-flex;align-items:center;border-radius:10px}
+.site-nav a[aria-current="page"]{color:var(--br-yellow)}
+.lang a{color:var(--br-muted);font-weight:700;min-height:44px;display:inline-flex;align-items:center;padding:0 8px}
+.hero-inner{padding:48px 20px 40px;max-width:1100px;margin:0 auto;width:100%}
+.hero-inner p{font-size:1.2rem;max-width:40em}
+section.block{padding:48px 0}
+.block p,.block li{max-width:46em}
+.grid{display:grid;gap:16px;grid-template-columns:repeat(auto-fit,minmax(220px,1fr))}
+.gallery{display:grid;gap:12px;grid-template-columns:repeat(auto-fit,minmax(240px,1fr))}
+.gallery img{border-radius:12px;border:1px solid var(--br-line)}
+.marker{display:inline-block;font-weight:700;font-size:.85em;border-radius:6px;padding:0 6px;margin:0 2px}
+.marker--tbd{background:var(--br-yellow);color:var(--br-ink)}
+.marker--lawyer{background:var(--br-red);color:#fff}
+.site-footer{margin-top:0;background:var(--br-navy)}
+.site-footer .wrap{padding-top:32px;padding-bottom:40px;display:grid;gap:24px;grid-template-columns:repeat(auto-fit,minmax(220px,1fr))}
+.site-footer ul{list-style:none;padding:0;margin:0}
+.site-footer li a{display:inline-flex;min-height:44px;align-items:center;color:var(--br-text)}
+.site-footer img{height:56px;width:auto}
+.cta-note{font-size:.85rem;color:var(--br-muted);margin:.6em 0 0}
+.br-section--sky .cta-note{color:var(--br-navy)}
+.header-cta{display:flex;flex-direction:column;align-items:center}
+.marker--draft{background:#fff;color:var(--br-ink);border:2px solid var(--br-ink)}
+.invite-form{display:grid;gap:12px;max-width:420px}.invite-form fieldset{border:0;padding:0;display:flex;gap:16px}.invite-form input[type=email]{padding:10px;border-radius:8px;border:2px solid currentColor;font:inherit}.invite-form [hidden]{display:none}
