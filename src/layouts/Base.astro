@@ -12,7 +12,6 @@ const other = ui.otherLang;
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="robots" content="noindex, nofollow" />
     <title>{title} | BlockRacers</title>
     <meta name="description" content={ui.tagline} />
     <meta property="og:title" content={`${title} | BlockRacers`} />
@@ -22,7 +21,6 @@ const other = ui.otherLang;
     <link rel="alternate" hreflang={other} href={href(other, current.slug[other])} />
   </head>
   <body>
-    <div class="draft-banner" set:html={ui.draft} />
     <header class="site-header">
       <div class="wrap">
         <a class="logo" href={href(lang, '')}><img src={u("/img/logo/wordmark_on_dark_transparent.png")} alt="BlockRacers" /></a>

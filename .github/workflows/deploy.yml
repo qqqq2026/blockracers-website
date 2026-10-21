@@ -1,8 +1,7 @@
 name: deploy
 # Runs only on push to main. The deploy job uses environment "production",
 # which requires approval from qqqq2026 before anything goes live.
-# NOTE: GitHub Pages is NOT enabled in repo settings yet and no custom domain is set.
-# Until Pages is enabled (Settings > Pages > Source: GitHub Actions), the deploy step will fail. That is intended.
+# Pages source: GitHub Actions. No custom domain yet (waits for www DNS).
 on:
   push:
     branches: [main]
@@ -24,6 +23,10 @@ jobs:
           cache: npm
       - run: npm ci
       - run: npm run build
+        env:
+          # Until www DNS points to GitHub the site lives at qqqq2026.github.io/blockracers-website/.
+          # Remove this when the custom domain www.blockracers.online is set.
+          PREVIEW_BASE: /blockracers-website/
       - uses: actions/upload-pages-artifact@v3
         with:
           path: dist

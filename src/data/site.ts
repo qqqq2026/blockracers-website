@@ -157,7 +157,7 @@ export const PAGES: Page[] = [
         { h: 'Wie is verantwoordelijk?', p: ['BlockRacers Studio is onderdeel van Grachten Holding B.V., KvK 90894502. [LAWYER REVIEW]'] },
         { h: 'Leeftijd', p: ['Leeftijdsadvies: 8+. Onder 16 vraagt een ouder de invite aan. [LAWYER REVIEW]'] },
         { h: 'Privacyverklaring', p: ['Volledige privacyverklaring (AVG): komt later. Concept, niet definitief. [LAWYER REVIEW]'] },
-        { h: 'Wijzigingen', p: ['Deze pagina kan veranderen. Laatst bijgewerkt: [datum bij publicatie]. [LAWYER REVIEW]'], gallery: ['02_players_avatars', '08_avatar_creator', '12_phone_driving'] },
+        { h: 'Wijzigingen', p: ['Deze pagina kan veranderen. Laatst bijgewerkt: 21 oktober 2026. [LAWYER REVIEW]'], gallery: ['02_players_avatars', '08_avatar_creator', '12_phone_driving'] },
       ] },
       en: { title: 'PARENTS AND PRIVACY', sub: 'You decide what feels safe. We explain it honestly.', sections: [
         { h: 'Short and honest', p: ['BlockRacers is an invite-only beta for ages 8+. Players drive through Parkstad and Beekdaelen, race and upgrade their car. No free chat, no ads, no third-party trackers. [LAWYER REVIEW]'] },
@@ -173,7 +173,7 @@ export const PAGES: Page[] = [
         { h: 'Who is responsible?', p: ['BlockRacers Studio is part of Grachten Holding B.V., KvK 90894502. [LAWYER REVIEW]'] },
         { h: 'Age', p: ['Age advice: 8+. Under 16, a parent requests the invite. [LAWYER REVIEW]'] },
         { h: 'Privacy statement', p: ['Full privacy statement (GDPR): coming later. Draft, not final. [LAWYER REVIEW]'] },
-        { h: 'Changes', p: ['This page can change. Last updated: [datum bij publicatie]. [LAWYER REVIEW]'], gallery: ['02_players_avatars', '08_avatar_creator', '12_phone_driving'] },
+        { h: 'Changes', p: ['This page can change. Last updated: 21 October 2026. [LAWYER REVIEW]'], gallery: ['02_players_avatars', '08_avatar_creator', '12_phone_driving'] },
       ] },
     } },
   { key: 'studio', slug: { nl: 'studio', en: 'studio' }, menu: { nl: 'BlockRacers Studio', en: 'BlockRacers Studio' }, hero: s('01_hero_street'),
