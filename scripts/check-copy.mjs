@@ -7,7 +7,7 @@ let bad = 0;
 for (const f of files) {
   const t = readFileSync(f, 'utf8');
   if (/[\u2013\u2014]/.test(t)) { console.error(`dash found in ${f}`); bad++; }
-  if (/<(script|link)[^>]+(src|href)="https?:\/\//i.test(t)) { console.error(`external script/style in ${f}`); bad++; }
+  if (/<script[^>]+src="https?:\/\//i.test(t) || /<link(?=[^>]*rel="(stylesheet|preload|modulepreload|preconnect|dns-prefetch)")[^>]+href="https?:\/\//i.test(t)) { console.error(`external script/style in ${f}`); bad++; }
   if (/fonts\.googleapis|googletagmanager|google-analytics/i.test(t)) { console.error(`external font/tracker in ${f}`); bad++; }
 }
 if (bad) process.exit(1);

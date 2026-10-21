@@ -10,6 +10,7 @@ const c = page.content[lang];
     <h1>{c.title}</h1>
     <p>{c.sub}</p>
     <a class="br-btn br-btn--primary" href={BETA_URL}>{UI[lang].play}</a>
+    <p class="cta-note">{UI[lang].testers}</p>
   </div>
   <div class="br-checker"></div>
 </section>
@@ -20,7 +21,7 @@ const c = page.content[lang];
       {s.p?.map((t) => <p set:html={mark(t)} />)}
       {s.ul && <ul>{s.ul.map((t) => <li set:html={mark(t)} />)}</ul>}
       {s.gallery && <div class="gallery">{s.gallery.map((g) => <img src={`/img/screenshots/${g}.png`} alt={`BlockRacers screenshot ${g.replace(/^\d+_/, '').replace(/_/g, ' ')}`} loading="lazy" />)}</div>}
-      {s.cta && <p><a class="br-btn br-btn--primary" href={BETA_URL}>{UI[lang].play}</a></p>}
+      {s.cta && <><p><a class="br-btn br-btn--primary" href={BETA_URL}>{UI[lang].play}</a></p><p class="cta-note">{UI[lang].testers}</p></>}
     </div>
   </section>
 ))}

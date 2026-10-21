@@ -6,7 +6,8 @@ export type Section = { h: string; p?: string[]; ul?: string[]; gallery?: string
 export type Page = { key: string; slug: Record<Lang, string>; menu: Record<Lang, string>; hero: string;
   content: Record<Lang, { title: string; sub: string; sections: Section[] }> };
 
-export const BETA_URL = 'https://www.blockracers.online';
+export const SITE_URL = 'https://www.blockracers.online';
+export const BETA_URL = 'https://game.blockracers.online';
 export const SOCIAL = {
   game: [
     { label: 'X @BlockRacersGame', href: 'https://x.com/BlockRacersGame' },
@@ -18,8 +19,8 @@ export const SOCIAL = {
   ],
 };
 export const UI = {
-  nl: { play: 'SPEEL GRATIS', tagline: 'Bouw. Rijd. Bouw opnieuw.', draft: 'CONCEPT: niet gepubliceerd. Teksten met [TBD Daniel] of [LAWYER REVIEW] zijn niet definitief.', game: 'De game', studio: 'De studio', other: 'English', otherLang: 'en' as Lang },
-  en: { play: 'PLAY FREE', tagline: 'Build it. Drive it. Build it again.', draft: 'DRAFT: not published. Text marked [TBD Daniel] or [LAWYER REVIEW] is not final.', game: 'The game', studio: 'The studio', other: 'Nederlands', otherLang: 'nl' as Lang },
+  nl: { play: 'SPEEL DE BETA', testers: 'Alleen voor goedgekeurde testers', tagline: 'Bouw. Rijd. Bouw opnieuw.', draft: 'CONCEPT: niet gepubliceerd. Teksten met [TBD Daniel] of [LAWYER REVIEW] zijn niet definitief.', game: 'De game', studio: 'De studio', other: 'English', otherLang: 'en' as Lang },
+  en: { play: 'PLAY THE BETA', testers: 'Approved testers only', tagline: 'Build it. Drive it. Build it again.', draft: 'DRAFT: not published. Text marked [TBD Daniel] or [LAWYER REVIEW] is not final.', game: 'The game', studio: 'The studio', other: 'Nederlands', otherLang: 'nl' as Lang },
 };
 
 const s = (n: string) => `/img/screenshots/${n}.png`;
@@ -53,6 +54,7 @@ export const PAGES: Page[] = [
         { h: 'De wereld', gallery: ['11_world_hud_desktop', '05_jumbo_takeoff', '06_fire_police', '03_loop_stunt'] },
         { h: 'Samen spelen', p: ['Er is nog geen chat. [TBD Daniel: wat spelers samen kunnen doen]'] },
         { h: 'Telefoon en desktop', p: ['[TBD Daniel: platformen]'], gallery: ['12_phone_driving', '13_phone_start', '09_start_screen'] },
+        { h: 'Later: de Studio', p: ['De Studio krijgt later een eigen plek op studio.blockracers.online. Dit komt later.'] },
         { h: 'Speel de beta', sky: true, cta: true },
       ] },
       en: { title: 'THE GAME', sub: 'Build it. Drive it. Build it again.', sections: [
@@ -62,6 +64,7 @@ export const PAGES: Page[] = [
         { h: 'The world', gallery: ['11_world_hud_desktop', '05_jumbo_takeoff', '06_fire_police', '03_loop_stunt'] },
         { h: 'Play together', p: ['There is no chat yet. [TBD Daniel: what players can do together]'] },
         { h: 'Phone and desktop', p: ['[TBD Daniel: platforms]'], gallery: ['12_phone_driving', '13_phone_start', '09_start_screen'] },
+        { h: 'Later: the Studio', p: ['The Studio will later get its own home at studio.blockracers.online. This comes later.'] },
         { h: 'Play the beta', sky: true, cta: true },
       ] },
     } },
@@ -79,11 +82,11 @@ export const PAGES: Page[] = [
   { key: 'roadmap', slug: { nl: 'roadmap', en: 'roadmap' }, menu: { nl: 'Roadmap', en: 'Roadmap' }, hero: s('11_world_hud_desktop'),
     content: {
       nl: { title: 'ROADMAP', sub: 'Waar we aan werken. Plannen kunnen veranderen.', sections: [
-        { h: 'Volgorde', ul: ['1. Beta release', '2. Studio release', '3. Scholen'], p: ['Geen datums. Plannen kunnen veranderen.'] },
+        { h: 'Volgorde', ul: ['1. Beta release', '2. Studio release (komt later op studio.blockracers.online)', '3. Scholen'], p: ['Geen datums. Plannen kunnen veranderen.'] },
         { h: 'Feedback', sky: true, p: ['[TBD Daniel: manieren om feedback te geven]'] },
       ] },
       en: { title: 'ROADMAP', sub: 'What we are working on. Plans can change.', sections: [
-        { h: 'Order', ul: ['1. Beta release', '2. Studio release', '3. Schools'], p: ['No dates. Plans can change.'] },
+        { h: 'Order', ul: ['1. Beta release', '2. Studio release (coming later at studio.blockracers.online)', '3. Schools'], p: ['No dates. Plans can change.'] },
         { h: 'Feedback', sky: true, p: ['[TBD Daniel: ways to give feedback]'] },
       ] },
     } },
@@ -133,12 +136,14 @@ export const PAGES: Page[] = [
     content: {
       nl: { title: 'BLOCKRACERS STUDIO', sub: 'Wie maakt de game, en waarom.', sections: [
         { h: 'Wie we zijn', p: ['Mensen worden alleen getoond op aanmelding. [TBD Daniel]'] },
+        { h: 'Komt later', p: ['De Studio krijgt later een eigen plek op studio.blockracers.online.'] },
         { h: 'Ons verhaal', p: ['[TBD Daniel: ons verhaal in 5 regels]'] },
         { h: 'Hoe we games maken', ul: ['We bouwen in kleine stappen.', 'We luisteren naar spelers.'], gallery: ['07_car_builder'] },
         { h: 'Contact', sky: true, p: ['Via het contactformulier. [TBD Daniel]', 'Game: @BlockRacersGame op X en TikTok. Studio: @BlkRacersHub op X en TikTok. Zie ook Pers.'] },
       ] },
       en: { title: 'BLOCKRACERS STUDIO', sub: 'Who makes the game, and why.', sections: [
         { h: 'Who we are', p: ['People are only shown if they sign up for it. [TBD Daniel]'] },
+        { h: 'Coming later', p: ['The Studio will later get its own home at studio.blockracers.online.'] },
         { h: 'Our story', p: ['[TBD Daniel: our story in 5 lines]'] },
         { h: 'How we make games', ul: ['We build in small steps.', 'We listen to players.'], gallery: ['07_car_builder'] },
         { h: 'Contact', sky: true, p: ['Through the contact form. [TBD Daniel]', 'Game: @BlockRacersGame on X and TikTok. Studio: @BlkRacersHub on X and TikTok. See also Press.'] },
@@ -160,13 +165,13 @@ export const PAGES: Page[] = [
   { key: 'press', slug: { nl: 'pers', en: 'press' }, menu: { nl: 'Pers', en: 'Press' }, hero: s('04_jet_over_city'),
     content: {
       nl: { title: 'PERS', sub: 'Alles voor journalisten en makers op een plek.', sections: [
-        { h: 'Feiten', ul: ['Game: BlockRacers', 'Studio: BlockRacers Studio (Grachten Holding B.V.)', 'Beta: beperkt, alleen goedgekeurde testers', 'Platformen: [TBD Daniel]', 'Releasestatus: beta, alleen werkend om te testen'] },
+        { h: 'Feiten', ul: ['Game: BlockRacers', 'Studio: BlockRacers Studio (Grachten Holding B.V.)', 'Website: www.blockracers.online', 'Game (beta): game.blockracers.online, beperkt, alleen goedgekeurde testers', 'Studio: studio.blockracers.online (komt later)', 'Platformen: [TBD Daniel]', 'Releasestatus: beta, alleen werkend om te testen'] },
         { h: 'Korte beschrijving', p: ['[TBD Daniel: goedgekeurde korte beschrijving NL]'] },
         { h: 'Perskit', p: ['Logo\'s, screenshots en brand board: [TBD Daniel: downloadpakket]. Logo niet uitrekken, niet herkleuren, geen outlines of effecten.'], gallery: ['01_hero_street', '02_players_avatars', '03_loop_stunt', '04_jet_over_city', '05_jumbo_takeoff', '06_fire_police', '07_car_builder', '08_avatar_creator', '09_start_screen', '10_garage_clean', '11_world_hud_desktop', '12_phone_driving', '13_phone_start'] },
         { h: 'Perscontact', sky: true, p: ['Via het contactformulier. [TBD Daniel]', 'Game: @BlockRacersGame op X en TikTok. Studio: @BlkRacersHub op X en TikTok.'] },
       ] },
       en: { title: 'PRESS', sub: 'Everything journalists and creators need in one place.', sections: [
-        { h: 'Facts', ul: ['Game: BlockRacers', 'Studio: BlockRacers Studio (Grachten Holding B.V.)', 'Beta: limited, approved testers only', 'Platforms: [TBD Daniel]', 'Release status: beta, only working for testing'] },
+        { h: 'Facts', ul: ['Game: BlockRacers', 'Studio: BlockRacers Studio (Grachten Holding B.V.)', 'Website: www.blockracers.online', 'Game (beta): game.blockracers.online, limited, approved testers only', 'Studio: studio.blockracers.online (coming later)', 'Platforms: [TBD Daniel]', 'Release status: beta, only working for testing'] },
         { h: 'Short description', p: ['[TBD Daniel: approved short description EN]'] },
         { h: 'Press kit', p: ['Logos, screenshots and brand board: [TBD Daniel: download pack]. Do not stretch, recolour, outline or add effects to the logo.'], gallery: ['01_hero_street', '02_players_avatars', '03_loop_stunt', '04_jet_over_city', '05_jumbo_takeoff', '06_fire_police', '07_car_builder', '08_avatar_creator', '09_start_screen', '10_garage_clean', '11_world_hud_desktop', '12_phone_driving', '13_phone_start'] },
         { h: 'Press contact', sky: true, p: ['Through the contact form. [TBD Daniel]', 'Game: @BlockRacersGame on X and TikTok. Studio: @BlkRacersHub on X and TikTok.'] },

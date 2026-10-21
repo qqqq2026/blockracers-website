@@ -61,3 +61,6 @@ section.block{padding:48px 0}
 .site-footer ul{list-style:none;padding:0;margin:0}
 .site-footer li a{display:inline-flex;min-height:44px;align-items:center;color:var(--br-text)}
 .site-footer img{height:56px;width:auto}
+.cta-note{font-size:.85rem;color:var(--br-muted);margin:.6em 0 0}
+.br-section--sky .cta-note{color:var(--br-navy)}
+.header-cta{display:flex;flex-direction:column;align-items:center}
