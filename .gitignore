@@ -147,3 +147,15 @@ vite.config.ts.timestamp-*
 
 # Turbo Repo
 .turbo
+
+# Astro
+dist/
+.astro/
+
+# Never commit (see README)
+.env*
+!.env.example
+legal-drafts/
+private/
+*.pem
+*.key
