@@ -33,6 +33,9 @@ const c = page.content[lang];
         </form>
         <script is:inline>document.querySelectorAll('.invite-form input[name=age]').forEach(function(r){r.addEventListener('change',function(){document.querySelectorAll('.invite-form [data-step]').forEach(function(d){d.hidden=d.dataset.step!==r.value})})})</script>
       )}
+      {s.links && <ul>{s.links.map((l) => <li><a href={l.href} rel="noopener">{l.label}</a></li>)}</ul>}
+      {s.download && <p><a class="br-btn br-btn--primary" href={u(s.download.href)} download>{s.download.label}</a></p>}
+      {s.soon && <p><button class="br-btn br-btn--primary" type="button" disabled>{UI[lang].soon}</button></p>}
       {s.cta && <><p><a class="br-btn br-btn--primary" href={BETA_URL}>{UI[lang].play}</a></p><p class="cta-note">{UI[lang].testers}</p></>}
     </div>
   </section>
