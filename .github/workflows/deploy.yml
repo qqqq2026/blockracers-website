@@ -1,7 +1,7 @@
 name: deploy
 # Runs only on push to main. The deploy job uses environment "production",
 # which requires approval from qqqq2026 before anything goes live.
-# Pages source: GitHub Actions. No custom domain yet (waits for www DNS).
+# Pages source: GitHub Actions. Custom domain www.blockracers.online (public/CNAME).
 on:
   push:
     branches: [main]
@@ -23,10 +23,6 @@ jobs:
           cache: npm
       - run: npm ci
       - run: npm run build
-        env:
-          # Until www DNS points to GitHub the site lives at qqqq2026.github.io/blockracers-website/.
-          # Remove this when the custom domain www.blockracers.online is set.
-          PREVIEW_BASE: /blockracers-website/
       - uses: actions/upload-pages-artifact@v3
         with:
           path: dist
