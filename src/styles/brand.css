@@ -1,9 +1,9 @@
 /* BlockRacers brand tokens and base components.
    Based on BlockRacers_brand_kit/brand.css. Fonts are self-hosted (no Google Fonts, no CDN). */
-@font-face{font-family:'Bungee';src:url('/fonts/Bungee-Regular.ttf') format('truetype');font-weight:400;font-display:swap}
-@font-face{font-family:'Chakra Petch';src:url('/fonts/ChakraPetch-Medium.ttf') format('truetype');font-weight:500;font-display:swap}
-@font-face{font-family:'Chakra Petch';src:url('/fonts/ChakraPetch-SemiBold.ttf') format('truetype');font-weight:600;font-display:swap}
-@font-face{font-family:'Chakra Petch';src:url('/fonts/ChakraPetch-Bold.ttf') format('truetype');font-weight:700;font-display:swap}
+@font-face{font-family:'Bungee';src:url('../fonts/Bungee-Regular.ttf') format('truetype');font-weight:400;font-display:swap}
+@font-face{font-family:'Chakra Petch';src:url('../fonts/ChakraPetch-Medium.ttf') format('truetype');font-weight:500;font-display:swap}
+@font-face{font-family:'Chakra Petch';src:url('../fonts/ChakraPetch-SemiBold.ttf') format('truetype');font-weight:600;font-display:swap}
+@font-face{font-family:'Chakra Petch';src:url('../fonts/ChakraPetch-Bold.ttf') format('truetype');font-weight:700;font-display:swap}
 
 :root{
   --br-navy:#0e1930;--br-raise:#1a2a4a;--br-yellow:#ffc23d;--br-yellow-edge:#c4901b;--br-ink:#231800;

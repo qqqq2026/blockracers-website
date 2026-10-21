@@ -23,6 +23,8 @@ export const UI = {
   en: { play: 'PLAY THE BETA', testers: 'Approved testers only', tagline: 'Build it. Drive it. Build it again.', draft: 'DRAFT: not published. Text marked [TBD Daniel] or [LAWYER REVIEW] is not final.', game: 'The game', studio: 'The studio', other: 'Nederlands', otherLang: 'nl' as Lang },
 };
 
+// Prefix a site path with the Astro base ("/" live, "/blockracers-website-preview/" on preview).
+export const u = (path: string) => import.meta.env.BASE_URL.replace(/\/$/, '') + path;
 const s = (n: string) => `/img/screenshots/${n}.png`;
 
 export const PAGES: Page[] = [
@@ -179,7 +181,7 @@ export const PAGES: Page[] = [
     } },
 ];
 
-export const href = (lang: Lang, slug: string) => (lang === 'nl' ? '/' : '/en/') + (slug ? slug + '/' : '');
+export const href = (lang: Lang, slug: string) => u((lang === 'nl' ? '/' : '/en/') + (slug ? slug + '/' : ''));
 
 // Escape text and wrap [TBD ...] and [LAWYER REVIEW ...] markers in visible badges.
 export function mark(t: string): string {

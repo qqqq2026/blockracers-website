@@ -28,6 +28,13 @@ npm run build   # builds to dist/ and runs scripts/check-copy.mjs
 
 GitHub Pages is not enabled yet and no custom domain is set. DNS (Cloudflare) is not configured. Both happen only after Daniel's go.
 
+## Preview (testlink)
+
+Test site: https://qqqq2026.github.io/blockracers-website-preview/ (noindex, robots Disallow, DRAFT banner).
+The `preview` workflow publishes every push to a non-main branch there (needs secret `PREVIEW_TOKEN`).
+Local build with the preview base: `PREVIEW_BASE=/blockracers-website-preview/ npm run build`.
+The preview shows the last pushed branch. It is public, so the never-commit rules apply there too.
+
 ## Never commit
 
 This repo is public. Everything in it, including history, is visible to anyone.

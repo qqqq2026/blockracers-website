@@ -1,11 +1,11 @@
 ---
-import { PAGES, UI, BETA_URL, mark, type Lang } from '../data/site';
+import { PAGES, UI, BETA_URL, mark, u, type Lang } from '../data/site';
 interface Props { lang: Lang; pageKey: string }
 const { lang, pageKey } = Astro.props;
 const page = PAGES.find((p) => p.key === pageKey)!;
 const c = page.content[lang];
 ---
-<section class="br-hero" style={`background-image:url(${page.hero})`}>
+<section class="br-hero" style={`background-image:url(${u(page.hero)})`}>
   <div class="hero-inner">
     <h1>{c.title}</h1>
     <p>{c.sub}</p>
@@ -20,11 +20,11 @@ const c = page.content[lang];
       <h2>{s.h}</h2>
       {s.p?.map((t) => <p set:html={mark(t)} />)}
       {s.ul && <ul>{s.ul.map((t) => <li set:html={mark(t)} />)}</ul>}
-      {s.gallery && <div class="gallery">{s.gallery.map((g) => <img src={`/img/screenshots/${g}.png`} alt={`BlockRacers screenshot ${g.replace(/^\d+_/, '').replace(/_/g, ' ')}`} loading="lazy" />)}</div>}
+      {s.gallery && <div class="gallery">{s.gallery.map((g) => <img src={u(`/img/screenshots/${g}.png`)} alt={`BlockRacers screenshot ${g.replace(/^\d+_/, '').replace(/_/g, ' ')}`} loading="lazy" />)}</div>}
       {s.cta && <><p><a class="br-btn br-btn--primary" href={BETA_URL}>{UI[lang].play}</a></p><p class="cta-note">{UI[lang].testers}</p></>}
     </div>
   </section>
 ))}
 {pageKey === 'studio' && (
-  <section class="block"><div class="wrap"><img src="/img/logo/studio_wordmark_on_navy.png" alt="BlockRacers Studio" style="max-width:420px" /></div></section>
+  <section class="block"><div class="wrap"><img src={u("/img/logo/studio_wordmark_on_navy.png")} alt="BlockRacers Studio" style="max-width:420px" /></div></section>
 )}

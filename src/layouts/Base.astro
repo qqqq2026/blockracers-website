@@ -1,6 +1,6 @@
 ---
 import '../styles/brand.css';
-import { PAGES, UI, SOCIAL, BETA_URL, SITE_URL, href, type Lang } from '../data/site';
+import { PAGES, UI, SOCIAL, BETA_URL, SITE_URL, href, u, type Lang } from '../data/site';
 interface Props { lang: Lang; pageKey: string; title: string }
 const { lang, pageKey, title } = Astro.props;
 const ui = UI[lang];
@@ -17,15 +17,15 @@ const other = ui.otherLang;
     <meta name="description" content={ui.tagline} />
     <meta property="og:title" content={`${title} | BlockRacers`} />
     <meta property="og:image" content={new URL("/img/og_share_1200x630.png", SITE_URL).href} />
-    <link rel="canonical" href={new URL(Astro.url.pathname, SITE_URL).href} />
-    <link rel="icon" href="/img/logo/app_icon.svg" type="image/svg+xml" />
+    <link rel="canonical" href={new URL(Astro.url.pathname.replace(import.meta.env.BASE_URL.replace(/\/$/, ''), '') || '/', SITE_URL).href} />
+    <link rel="icon" href={u("/img/logo/app_icon.svg")} type="image/svg+xml" />
     <link rel="alternate" hreflang={other} href={href(other, current.slug[other])} />
   </head>
   <body>
     <div class="draft-banner" set:html={ui.draft} />
     <header class="site-header">
       <div class="wrap">
-        <a class="logo" href={href(lang, '')}><img src="/img/logo/wordmark_on_dark_transparent.png" alt="BlockRacers" /></a>
+        <a class="logo" href={href(lang, '')}><img src={u("/img/logo/wordmark_on_dark_transparent.png")} alt="BlockRacers" /></a>
         <nav class="site-nav" aria-label="Menu">
           {PAGES.map((p) => <a href={href(lang, p.slug[lang])} aria-current={p.key === pageKey ? 'page' : undefined}>{p.menu[lang]}</a>)}
         </nav>
@@ -41,7 +41,7 @@ const other = ui.otherLang;
         <div><p class="br-label">{ui.game}</p><ul>{SOCIAL.game.map((s) => <li><a href={s.href} rel="noopener">{s.label}</a></li>)}</ul></div>
         <div>
           <p class="br-label">{ui.studio}</p>
-          <img src="/img/logo/studio_wordmark_on_dark_transparent.png" alt="BlockRacers Studio" />
+          <img src={u("/img/logo/studio_wordmark_on_dark_transparent.png")} alt="BlockRacers Studio" />
           <ul>{SOCIAL.studio.map((s) => <li><a href={s.href} rel="noopener">{s.label}</a></li>)}</ul>
         </div>
       </div>
