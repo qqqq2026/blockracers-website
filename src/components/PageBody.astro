@@ -1,5 +1,7 @@
 ---
-import { PAGES, UI, INVITE, BETA_URL, mark, u, type Lang } from '../data/site';
+import { PAGES, UI, INVITE, BETA_URL, mark, u, href, type Lang } from '../data/site';
+const SB_URL = import.meta.env.PUBLIC_SUPABASE_URL || 'https://jefgwbzqpskfvlvkpque.supabase.co';
+const SB_KEY = import.meta.env.PUBLIC_SUPABASE_ANON_KEY || '';
 interface Props { lang: Lang; pageKey: string }
 const { lang, pageKey } = Astro.props;
 const page = PAGES.find((p) => p.key === pageKey)!;
@@ -14,6 +16,14 @@ const c = page.content[lang];
   </div>
   <div class="br-checker"></div>
 </section>
+{c.account && (
+  <section class="block"><div class="wrap">
+    <div id="br-account" class="acc" data-lang={lang} data-url={SB_URL} data-key={SB_KEY} data-game={BETA_URL} data-privacy={href(lang, PAGES.find((p) => p.key === 'parents')!.slug[lang])}><p class="acc-note">…</p></div>
+    <noscript><p>{lang === 'nl' ? 'Zet JavaScript aan om in te loggen.' : 'Turn on JavaScript to log in.'}</p></noscript>
+    <script is:inline src={u('/vendor/supabase.js')}></script>
+    <script is:inline src={u('/js/account.js')}></script>
+  </div></section>
+)}
 {c.sections.map((s) => (
   <section class={`block ${s.sky ? 'br-section--sky' : ''}`}>
     <div class="wrap">
@@ -22,7 +32,7 @@ const c = page.content[lang];
       {s.ul && <ul>{s.ul.map((t) => <li set:html={mark(t)} />)}</ul>}
       {s.gallery && <div class="gallery">{s.gallery.map((g) => <img src={u(`/img/screenshots/${g}.png`)} alt={`BlockRacers screenshot ${g.replace(/^\d+_/, '').replace(/_/g, ' ')}`} loading="lazy" />)}</div>}
       {s.invite && (
-        <><p><a class="br-btn br-btn--primary" href={`${BETA_URL}/?ask=1`}>{INVITE[lang].btn}</a></p><p class="cta-note">{INVITE[lang].note}</p></>
+        <><p><a class="br-btn br-btn--primary" href={href(lang, 'account')}>{INVITE[lang].btn}</a></p><p class="cta-note">{INVITE[lang].note}</p></>
       )}
       {s.links && <ul>{s.links.map((l) => <li><a href={l.href} rel="noopener">{l.label}</a></li>)}</ul>}
       {s.download && <p><a class="br-btn br-btn--primary" href={u(s.download.href)} download>{s.download.label}</a></p>}
