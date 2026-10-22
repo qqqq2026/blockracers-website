@@ -23,8 +23,8 @@ export const INVITE = {
   en: { btn: 'GO TO MY ACCOUNT', note: 'No account yet? Create one there for free.' },
 };
 export const UI = {
-  nl: { play: 'SPEEL DE BETA', testers: 'Invite-only, 200 plekken', tagline: 'Bouw. Rijd. Bouw opnieuw.', colofon: 'BlockRacers Studio is onderdeel van Grachten Holding B.V., KvK 90894502', soon: 'Aanmelden opent binnenkort', draft: 'CONCEPT: niet gepubliceerd. Teksten met markeringen zijn niet definitief.', game: 'De game', studio: 'De studio', account: 'Account', other: 'English', otherLang: 'en' as Lang },
-  en: { play: 'PLAY THE BETA', testers: 'Invite only, 200 spots', tagline: 'Build it. Drive it. Build it again.', colofon: 'BlockRacers Studio is part of Grachten Holding B.V., KvK 90894502', soon: 'Sign-up opens soon', draft: 'DRAFT: not published. Marked text is not final.', game: 'The game', studio: 'The studio', account: 'Account', other: 'Nederlands', otherLang: 'nl' as Lang },
+  nl: { play: 'SPEEL DE BETA', testers: 'Invite-only, 200 plekken', tagline: 'Rijd. Race. Ontdek.', colofon: 'BlockRacers Studio is onderdeel van Grachten Holding B.V., KvK 90894502', soon: 'Aanmelden opent binnenkort', draft: 'CONCEPT: niet gepubliceerd. Teksten met markeringen zijn niet definitief.', game: 'De game', studio: 'De studio', account: 'Account', other: 'English', otherLang: 'en' as Lang },
+  en: { play: 'PLAY THE BETA', testers: 'Invite only, 200 spots', tagline: 'Drive. Race. Explore.', colofon: 'BlockRacers Studio is part of Grachten Holding B.V., KvK 90894502', soon: 'Sign-up opens soon', draft: 'DRAFT: not published. Marked text is not final.', game: 'The game', studio: 'The studio', account: 'Account', other: 'Nederlands', otherLang: 'nl' as Lang },
 };
 
 // Prefix a site path with the Astro base ("/" live, "/blockracers-website-preview/" on preview).
@@ -34,7 +34,7 @@ const s = (n: string) => `/img/screenshots/${n}.png`;
 export const PAGES: Page[] = [
   { key: 'home', slug: { nl: '', en: '' }, menu: { nl: 'Home', en: 'Home' }, hero: s('01_hero_street'),
     content: {
-      nl: { title: 'BOUW. RIJD. BOUW OPNIEUW.', sub: 'Racen door Parkstad en Beekdaelen, gewoon in je browser.', sections: [
+      nl: { title: 'RIJD. RACE. ONTDEK.', sub: 'Racen door Parkstad en Beekdaelen, gewoon in je browser.', sections: [
         { h: 'Zo werkt het', ul: ['Maak je avatar.', 'Upgrade je auto in de garage.', 'Rijd door Parkstad en Beekdaelen op echte kaarten.'] },
         { h: 'Features', ul: ['Echte kaarten van Parkstad en Beekdaelen', 'Avatar en garage met upgrades', 'Meerdere races met leaderboard', 'Coins, levels en stuntplekken', 'Verkeer op de weg', 'Live samen rijden met ingelogde spelers'] },
         { h: 'Screenshots', gallery: ['03_loop_stunt', '04_jet_over_city', '02_players_avatars', '10_garage_clean', '12_phone_driving'] },
@@ -42,7 +42,7 @@ export const PAGES: Page[] = [
         { h: 'Laatste devlog', p: ['Speelbare release. Lees meer op de Devlog.'] },
         { h: 'Voor ouders', p: ['Lees hoe we omgaan met veiligheid en privacy op de pagina Ouders en privacy.'] },
       ] },
-      en: { title: 'BUILD IT. DRIVE IT. BUILD IT AGAIN.', sub: 'Race through Parkstad and Beekdaelen, right in your browser.', sections: [
+      en: { title: 'DRIVE. RACE. EXPLORE.', sub: 'Race through Parkstad and Beekdaelen, right in your browser.', sections: [
         { h: 'How it works', ul: ['Create your avatar.', 'Upgrade your car in the garage.', 'Drive through Parkstad and Beekdaelen on real maps.'] },
         { h: 'Features', ul: ['Real maps of Parkstad and Beekdaelen', 'Avatar and garage with upgrades', 'Multiple races with a leaderboard', 'Coins, levels and stunt spots', 'Traffic on the road', 'Drive live with other logged-in players'] },
         { h: 'Screenshots', gallery: ['03_loop_stunt', '04_jet_over_city', '02_players_avatars', '10_garage_clean', '12_phone_driving'] },
@@ -55,7 +55,7 @@ export const PAGES: Page[] = [
     content: {
       nl: { title: 'DE GAME', sub: 'Rijd. Race. Upgrade. Herhaal.', sections: [
         { h: 'Wat doe je?', ul: ['Rijd door Parkstad en Beekdaelen op echte kaarten, met verkeer.', 'Doe mee aan meerdere races en kom op het leaderboard.', 'Verdien coins, stijg in level en vind stuntplekken.'] },
-        { h: 'De garage', p: ['Upgrade je auto in de garage.'], gallery: ['10_garage_clean', '07_car_builder'] },
+        { h: 'De garage', p: ['Upgrade je auto in de garage.'], gallery: ['10_garage_clean'] },
         { h: 'Avatar maken', gallery: ['08_avatar_creator', '02_players_avatars'] },
         { h: 'De wereld', gallery: ['11_world_hud_desktop', '05_jumbo_takeoff', '06_fire_police', '03_loop_stunt'] },
         { h: 'Samen spelen', p: ['Rij live met andere ingelogde spelers. Er is geen vrije chat, alleen vaste berichten om uit te kiezen.'] },
@@ -66,7 +66,7 @@ export const PAGES: Page[] = [
       ] },
       en: { title: 'THE GAME', sub: 'Drive. Race. Upgrade. Repeat.', sections: [
         { h: 'What do you do?', ul: ['Drive through Parkstad and Beekdaelen on real maps, with traffic.', 'Join multiple races and get on the leaderboard.', 'Earn coins, level up and find stunt spots.'] },
-        { h: 'The garage', p: ['Upgrade your car in the garage.'], gallery: ['10_garage_clean', '07_car_builder'] },
+        { h: 'The garage', p: ['Upgrade your car in the garage.'], gallery: ['10_garage_clean'] },
         { h: 'Avatar creator', gallery: ['08_avatar_creator', '02_players_avatars'] },
         { h: 'The world', gallery: ['11_world_hud_desktop', '05_jumbo_takeoff', '06_fire_police', '03_loop_stunt'] },
         { h: 'Play together', p: ['Drive live with other logged-in players. There is no free chat, only set messages to pick from.'] },
@@ -178,20 +178,20 @@ export const PAGES: Page[] = [
     } },
   { key: 'studio', slug: { nl: 'studio', en: 'studio' }, menu: { nl: 'BlockRacers Studio', en: 'BlockRacers Studio' }, hero: s('01_hero_street'),
     content: {
-      nl: { title: 'BLOCKRACERS STUDIO', sub: 'Straks bouw je je eigen levels.', sections: [
-        { h: 'Komt later', p: ['De Studio komt later op studio.blockracers.online. Daar bouw je je eigen levels.'] },
+      nl: { title: 'BLOCKRACERS STUDIO', sub: 'Komt later.', sections: [
+        { h: 'Komt later', p: ['De Studio komt later op studio.blockracers.online.'] },
         { h: 'Wie we zijn', p: ['Mensen tonen we alleen als ze zich aanmelden. Aanmelden opent binnenkort.'], soon: true },
-        { h: 'Hoe we games maken', ul: ['We bouwen in kleine stappen.', 'We luisteren naar spelers.'], gallery: ['07_car_builder'] },
+        { h: 'Hoe we games maken', ul: ['We bouwen in kleine stappen.', 'We luisteren naar spelers.'] },
         { h: 'Volg ons', sky: true, p: ['Game: @BlockRacersGame. Studio: @BlkRacersHub. Op X en TikTok.'], links: [...SOCIAL.game, ...SOCIAL.studio] },
       ] },
-      en: { title: 'BLOCKRACERS STUDIO', sub: 'Soon you build your own levels.', sections: [
-        { h: 'Coming later', p: ['The Studio comes later at studio.blockracers.online. That is where you build your own levels.'] },
+      en: { title: 'BLOCKRACERS STUDIO', sub: 'Coming later.', sections: [
+        { h: 'Coming later', p: ['The Studio comes later at studio.blockracers.online.'] },
         { h: 'Who we are', p: ['We only show people who sign up for it. Sign-up opens soon.'], soon: true },
-        { h: 'How we make games', ul: ['We build in small steps.', 'We listen to players.'], gallery: ['07_car_builder'] },
+        { h: 'How we make games', ul: ['We build in small steps.', 'We listen to players.'] },
         { h: 'Follow us', sky: true, p: ['Game: @BlockRacersGame. Studio: @BlkRacersHub. On X and TikTok.'], links: [...SOCIAL.game, ...SOCIAL.studio] },
       ] },
     } },
-  { key: 'education', slug: { nl: 'onderwijs', en: 'education' }, menu: { nl: 'Onderwijs', en: 'Education' }, hero: s('07_car_builder'),
+  { key: 'education', slug: { nl: 'onderwijs', en: 'education' }, menu: { nl: 'Onderwijs', en: 'Education' }, hero: s('11_world_hud_desktop'),
     content: {
       nl: { title: 'ONDERWIJS', sub: 'BlockRacers in de klas.', sections: [
         { h: 'Komt later', p: ['BlockRacers voor scholen komt later, na de beta en de studio release.'], gallery: ['10_garage_clean', '11_world_hud_desktop'] },
@@ -205,13 +205,13 @@ export const PAGES: Page[] = [
       nl: { title: 'PERS', sub: 'Alles voor journalisten en makers op een plek.', sections: [
         { h: 'Feiten', ul: ['Game: BlockRacers', 'Studio: BlockRacers Studio (Grachten Holding B.V., KvK 90894502)', 'Website: www.blockracers.online', 'Game (beta): game.blockracers.online, invite-only, 200 testers', 'Studio: studio.blockracers.online (komt later)', 'Platform: browser (web-app), telefoon, tablet en computer', 'Leeftijdsadvies: 8+'] },
         { h: 'Korte beschrijving', p: ['BlockRacers is een gratis 3D-racegame in je browser van BlockRacers Studio. Rijd door Parkstad en Beekdaelen op echte kaarten, met verkeer. Maak je avatar, upgrade je auto in de garage, verdien coins en vind stuntplekken. Stijg in level en doe mee aan meerdere races met leaderboard. Rijd live met andere ingelogde spelers. Inloggen gaat met e-mail en wachtwoord en je voortgang wordt opgeslagen. Zet de game op je beginscherm, touch werkt. Geen reclame, geen trackers van derden, geen vrije chat maar vaste berichten, en een meldfunctie. Nu in een invite-only beta voor 200 testers.'] },
-        { h: 'Perskit', p: ['Logo\'s en echte screenshots in een zip. Logo niet uitrekken, niet herkleuren, geen outlines of effecten.'], download: { label: 'Download perskit (zip)', href: '/press/blockracers_presskit.zip' }, gallery: ['01_hero_street', '02_players_avatars', '03_loop_stunt', '04_jet_over_city', '05_jumbo_takeoff', '06_fire_police', '07_car_builder', '08_avatar_creator', '09_start_screen', '10_garage_clean', '11_world_hud_desktop', '12_phone_driving', '13_phone_start'] },
+        { h: 'Perskit', p: ['Logo\'s en echte screenshots in een zip. Logo niet uitrekken, niet herkleuren, geen outlines of effecten.'], download: { label: 'Download perskit (zip)', href: '/press/blockracers_presskit.zip' }, gallery: ['01_hero_street', '02_players_avatars', '03_loop_stunt', '04_jet_over_city', '05_jumbo_takeoff', '06_fire_police', '08_avatar_creator', '09_start_screen', '10_garage_clean', '11_world_hud_desktop', '12_phone_driving', '13_phone_start'] },
         { h: 'Volg ons', sky: true, p: ['Game: @BlockRacersGame. Studio: @BlkRacersHub. Op X en TikTok.'], links: [...SOCIAL.game, ...SOCIAL.studio] },
       ] },
       en: { title: 'PRESS', sub: 'Everything journalists and creators need in one place.', sections: [
         { h: 'Facts', ul: ['Game: BlockRacers', 'Studio: BlockRacers Studio (Grachten Holding B.V., KvK 90894502)', 'Website: www.blockracers.online', 'Game (beta): game.blockracers.online, invite-only, 200 testers', 'Studio: studio.blockracers.online (coming later)', 'Platform: browser (web app), phone, tablet and computer', 'Age advice: 8+'] },
         { h: 'Short description', p: ['BlockRacers is a free 3D racing game in your browser by BlockRacers Studio. Drive through Parkstad and Beekdaelen on real maps, with traffic. Create your avatar, upgrade your car in the garage, earn coins and find stunt spots. Level up and join multiple races with a leaderboard. Drive live with other logged-in players. Log in with email and password and your progress is saved. Add the game to your home screen, touch works. No ads, no third-party trackers, no free chat but set messages, and a report function. Now in an invite-only beta for 200 testers.'] },
-        { h: 'Press kit', p: ['Logos and real screenshots in one zip. Do not stretch, recolour, outline or add effects to the logo.'], download: { label: 'Download press kit (zip)', href: '/press/blockracers_presskit.zip' }, gallery: ['01_hero_street', '02_players_avatars', '03_loop_stunt', '04_jet_over_city', '05_jumbo_takeoff', '06_fire_police', '07_car_builder', '08_avatar_creator', '09_start_screen', '10_garage_clean', '11_world_hud_desktop', '12_phone_driving', '13_phone_start'] },
+        { h: 'Press kit', p: ['Logos and real screenshots in one zip. Do not stretch, recolour, outline or add effects to the logo.'], download: { label: 'Download press kit (zip)', href: '/press/blockracers_presskit.zip' }, gallery: ['01_hero_street', '02_players_avatars', '03_loop_stunt', '04_jet_over_city', '05_jumbo_takeoff', '06_fire_police', '08_avatar_creator', '09_start_screen', '10_garage_clean', '11_world_hud_desktop', '12_phone_driving', '13_phone_start'] },
         { h: 'Follow us', sky: true, p: ['Game: @BlockRacersGame. Studio: @BlkRacersHub. On X and TikTok.'], links: [...SOCIAL.game, ...SOCIAL.studio] },
       ] },
     } },
