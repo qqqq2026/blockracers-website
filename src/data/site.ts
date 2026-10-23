@@ -23,8 +23,8 @@ export const INVITE = {
   en: { btn: 'GO TO MY ACCOUNT', note: 'No account yet? Create one there for free.' },
 };
 export const UI = {
-  nl: { play: 'SPEEL DE BETA', testers: 'Invite-only, 200 plekken', tagline: 'Rijd. Race. Ontdek.', colofon: 'BlockRacers Studio is onderdeel van Grachten Holding B.V., KvK 90894502', soon: 'Aanmelden opent binnenkort', draft: 'CONCEPT: niet gepubliceerd. Teksten met markeringen zijn niet definitief.', game: 'De game', studio: 'De studio', account: 'Account', other: 'English', otherLang: 'en' as Lang },
-  en: { play: 'PLAY THE BETA', testers: 'Invite only, 200 spots', tagline: 'Drive. Race. Explore.', colofon: 'BlockRacers Studio is part of Grachten Holding B.V., KvK 90894502', soon: 'Sign-up opens soon', draft: 'DRAFT: not published. Marked text is not final.', game: 'The game', studio: 'The studio', account: 'Account', other: 'Nederlands', otherLang: 'nl' as Lang },
+  nl: { play: 'SPEEL DE BETA', testers: 'Beta met 200 plekken', tagline: 'Rijd. Race. Ontdek.', colofon: 'BlockRacers Studio is onderdeel van Grachten Holding B.V., KvK 90894502', soon: 'Aanmelden opent binnenkort', draft: 'CONCEPT: niet gepubliceerd. Teksten met markeringen zijn niet definitief.', game: 'De game', studio: 'De studio', account: 'Account', other: 'English', otherLang: 'en' as Lang },
+  en: { play: 'PLAY THE BETA', testers: 'Beta with 200 spots', tagline: 'Drive. Race. Explore.', colofon: 'BlockRacers Studio is part of Grachten Holding B.V., KvK 90894502', soon: 'Sign-up opens soon', draft: 'DRAFT: not published. Marked text is not final.', game: 'The game', studio: 'The studio', account: 'Account', other: 'Nederlands', otherLang: 'nl' as Lang },
 };
 
 // Prefix a site path with the Astro base ("/" live, "/blockracers-website-preview/" on preview).
@@ -38,7 +38,7 @@ export const PAGES: Page[] = [
         { h: 'Zo werkt het', ul: ['Maak je avatar.', 'Upgrade je auto in de garage.', 'Rijd door Parkstad en Beekdaelen op echte kaarten.'] },
         { h: 'Features', ul: ['Echte kaarten van Parkstad en Beekdaelen', 'Avatar en garage met upgrades', 'Meerdere races met leaderboard', 'Coins, levels en stuntplekken', 'Verkeer op de weg', 'Live samen rijden met ingelogde spelers'] },
         { h: 'Screenshots', gallery: ['03_loop_stunt', '04_jet_over_city', '02_players_avatars', '10_garage_clean', '12_phone_driving'] },
-        { h: 'De beta', sky: true, p: ['BlockRacers is een invite-only beta met 200 plekken. Speel in je browser op telefoon, tablet of computer.'], cta: true },
+        { h: 'De beta', sky: true, p: ['BlockRacers is een beta met 200 plekken. De eerste 200 accounts worden automatisch goedgekeurd. Speel in je browser op telefoon, tablet of computer.'], cta: true },
         { h: 'Laatste devlog', p: ['Speelbare release. Lees meer op de Devlog.'] },
         { h: 'Voor ouders', p: ['Lees hoe we omgaan met veiligheid en privacy op de pagina Ouders en privacy.'] },
       ] },
@@ -46,7 +46,7 @@ export const PAGES: Page[] = [
         { h: 'How it works', ul: ['Create your avatar.', 'Upgrade your car in the garage.', 'Drive through Parkstad and Beekdaelen on real maps.'] },
         { h: 'Features', ul: ['Real maps of Parkstad and Beekdaelen', 'Avatar and garage with upgrades', 'Multiple races with a leaderboard', 'Coins, levels and stunt spots', 'Traffic on the road', 'Drive live with other logged-in players'] },
         { h: 'Screenshots', gallery: ['03_loop_stunt', '04_jet_over_city', '02_players_avatars', '10_garage_clean', '12_phone_driving'] },
-        { h: 'The beta', sky: true, p: ['BlockRacers is an invite-only beta with 200 spots. Play in your browser on phone, tablet or computer.'], cta: true },
+        { h: 'The beta', sky: true, p: ['BlockRacers is a beta with 200 spots. The first 200 accounts are approved automatically. Play in your browser on phone, tablet or computer.'], cta: true },
         { h: 'Latest devlog', p: ['Playable release. Read more on the Devlog.'] },
         { h: 'For parents', p: ['Read how we handle safety and privacy on the Parents and privacy page.'] },
       ] },
@@ -79,25 +79,25 @@ export const PAGES: Page[] = [
   { key: 'invite', nav: false, slug: { nl: 'invite', en: 'invite' }, menu: { nl: 'Invite', en: 'Invite' }, hero: s('03_loop_stunt'),
     content: {
       nl: { title: 'VRAAG EEN INVITE AAN', sub: 'Maak gratis een account en vraag je invite-code aan. De beta heeft 200 plekken.', sections: [
-        { h: 'Zo werkt het', ul: ['1. Maak gratis een BlockRacers-account. Dat kan iedereen met een e-mailadres.', '2. Vraag op je account-pagina je invite-code aan.', '3. Ben je aan de beurt? Dan krijg je je code per e-mail. Klik op Speel nu in de mail, je code wordt vanzelf ingewisseld.'], p: ['Onder 16? Je geeft ook het e-mailadres van je ouder. De invite gaat naar je ouder, die beslist of je mag meedoen. Meer vragen we niet: geen naam, geen adres, geen telefoonnummer.'] },
+        { h: 'Zo werkt het', ul: ['1. Maak gratis een BlockRacers-account. Dat kan iedereen met een e-mailadres.', '2. Bevestig je e-mailadres met de code uit de mail.', '3. Is er nog plek? Dan word je automatisch goedgekeurd. Je ziet Goedgekeurd op je account-pagina en klikt op Speel nu. Een code invullen hoeft niet.', '4. Zijn de 200 plekken vol? Dan sta je op de wachtlijst.'], p: ['Onder 16? Je geeft ook het e-mailadres van je ouder. De invite gaat naar je ouder, die beslist of je mag meedoen. Meer vragen we niet: geen naam, geen adres, geen telefoonnummer.'] },
         { h: 'Zet jezelf op de lijst', invite: true, p: ['Je aanvraag wordt veilig opgeslagen in de EU en alleen gebruikt voor je beta-invite.'] },
-        { h: 'Heb je al een invite-code?', sky: true, p: ['Top! Klik op Speel nu in je invite-mail en log in. Nog geen account? Maak er gratis een met het e-mailadres waarmee je de invite aanvroeg. Je code wordt vanzelf ingewisseld.', 'Een invite-code ziet eruit als BR-XXXX-XXXX. Elke code werkt maar een keer en hoort bij dat e-mailadres.'], cta: true },
+        { h: 'Al goedgekeurd?', sky: true, p: ['Log in op je account-pagina en klik op Speel nu. Een code invullen hoeft niet.'], cta: true },
       ] },
       en: { title: 'REQUEST AN INVITE', sub: 'Create a free account and request your invite code. The beta has 200 spots.', sections: [
-        { h: 'How it works', ul: ['1. Create a free BlockRacers account. Anyone with an email address can.', '2. Request your invite code on your account page.', '3. Your turn? You get your code by email. Click Play now in the email and your code is applied automatically.'], p: ['Under 16? You also give your parent\'s email address. The invite goes to your parent, who decides if you can join. That is all we ask: no name, no address, no phone number.'] },
+        { h: 'How it works', ul: ['1. Create a free BlockRacers account. Anyone with an email address can.', '2. Confirm your email address with the code from the email.', '3. Spots left? Then you are approved automatically. You see Approved on your account page and click Play now. No code to enter.', '4. All 200 spots taken? Then you are on the waitlist.'], p: ['Under 16? You also give your parent\'s email address. The invite goes to your parent, who decides if you can join. That is all we ask: no name, no address, no phone number.'] },
         { h: 'Get on the list', invite: true, p: ['Your request is stored securely in the EU and only used for your beta invite.'] },
-        { h: 'Already have an invite code?', sky: true, p: ['Nice! Click Play now in your invite email and log in. No account yet? Create a free one with the email address you used for the invite. Your code is applied automatically.', 'An invite code looks like BR-XXXX-XXXX. Each code works only once and belongs to that email address.'], cta: true },
+        { h: 'Already approved?', sky: true, p: ['Log in on your account page and click Play now. No code to enter.'], cta: true },
       ] },
     } },
   { key: 'account', nav: false, slug: { nl: 'account', en: 'account' }, menu: { nl: 'Account', en: 'Account' }, hero: s('01_hero_street'),
     content: {
       nl: { title: 'JE ACCOUNT', sub: 'Een account voor de website en de game. Gratis.', account: true, sections: [
-        { h: 'Een account, overal', p: ['Met je BlockRacers-account log je in op de website en in de game. Log je hier in, dan ben je in de game ook ingelogd.', 'Spelen kan met een invite-code. De beta heeft 200 plekken.'] },
+        { h: 'Een account, overal', p: ['Met je BlockRacers-account log je in op de website en in de game. Log je hier in, dan ben je in de game ook ingelogd.', 'De beta heeft 200 plekken. De eerste 200 accounts worden automatisch goedgekeurd, daarna kom je op de wachtlijst.'] },
         { h: 'Wat andere spelers zien', p: ['Je bijnaam (max 16 tekens, geen echte naam), je avatar, coins, level en beste tijden.'] },
         { h: 'Account verwijderen', p: ['Hierboven onder Account verwijderen, of in de game bij Gevarenzone. Bevestig met VERWIJDER. Je account, profiel, voortgang en aanvraag worden direct gewist.', 'Ben je onder 16? Doe het samen met een ouder.'] },
       ] },
       en: { title: 'YOUR ACCOUNT', sub: 'One account for the website and the game. Free.', account: true, sections: [
-        { h: 'One account, everywhere', p: ['Your BlockRacers account works on the website and in the game. Log in here and you are logged in to the game too.', 'Playing needs an invite code. The beta has 200 spots.'] },
+        { h: 'One account, everywhere', p: ['Your BlockRacers account works on the website and in the game. Log in here and you are logged in to the game too.', 'The beta has 200 spots. The first 200 accounts are approved automatically, after that you join the waitlist.'] },
         { h: 'What other players see', p: ['Your nickname (max 16 characters, no real names), your avatar, coins, level and best times.'] },
         { h: 'Delete your account', p: ['Above under Delete account, or in the game under Danger zone. Confirm with VERWIJDER. Your account, profile, progress and request are deleted right away.', 'Under 16? Do it together with a parent.'] },
       ] },
@@ -129,14 +129,14 @@ export const PAGES: Page[] = [
       nl: { title: 'SUPPORT', sub: 'Snel antwoord op je vragen.', sections: [
         { h: 'Is het echt gratis?', p: ['Ja! BlockRacers is gratis en je kunt niets kopen.'] },
         { h: 'Op welke apparaten kan ik spelen?', p: ['In je browser, op telefoon, tablet of computer. Zet de game als icoon op je beginscherm. Touchscreen werkt. Een controller is nog niet getest.'] },
-        { h: 'Hoe start ik?', p: ['De beta is invite-only. Maak gratis een account en vraag op je account-pagina je invite-code aan. Ben je aan de beurt? Dan krijg je een mail met je code. Klik op Speel nu en log in, je code wordt vanzelf ingewisseld. Maak je avatar, check je garage en rijd door Parkstad en Beekdaelen. Je voortgang wordt opgeslagen.'] },
+        { h: 'Hoe start ik?', p: ['Maak gratis een account. Is er nog plek in de beta? Dan word je automatisch goedgekeurd en klik je op je account-pagina op Speel nu. Een code invullen hoeft niet. Maak je avatar, check je garage en rijd door Parkstad en Beekdaelen. Je voortgang wordt opgeslagen.'] },
         { h: 'Is het veilig voor mijn kind?', p: ['BlockRacers is gemaakt voor kinderen. Er is geen vrije chat, alleen vaste berichten. Geen reclame en geen trackers van derden. Zie je iets wat niet klopt? Meld het in de game. Meer op Ouders en privacy.'] },
         { h: 'Hoe meld ik een bug?', p: ['Gebruik de meldknop in de game en kies \'bug\'.'], gallery: ['09_start_screen', '13_phone_start'] },
       ] },
       en: { title: 'SUPPORT', sub: 'Quick answers to your questions.', sections: [
         { h: 'Is it really free?', p: ['Yes! BlockRacers is free and there is nothing to buy.'] },
         { h: 'Which devices can I play on?', p: ['In your browser, on phone, tablet or computer. Add the game to your home screen as an icon. Touchscreen works. A controller is not tested yet.'] },
-        { h: 'How do I start?', p: ['The beta is invite-only. Create a free account and request your invite code on your account page. Your turn? Then you get an email with your code. Click Play now and log in, your code is applied automatically. Create your avatar, check your garage and drive through Parkstad and Beekdaelen. Your progress is saved.'] },
+        { h: 'How do I start?', p: ['Create a free account. Spots left in the beta? Then you are approved automatically and click Play now on your account page. No code to enter. Create your avatar, check your garage and drive through Parkstad and Beekdaelen. Your progress is saved.'] },
         { h: 'Is it safe for my child?', p: ['BlockRacers is made for kids. There is no free chat, only set messages. No ads and no third-party trackers. See something wrong? Report it in the game. More on Parents and privacy.'] },
         { h: 'How do I report a bug?', p: ['Use the report button in the game and pick \'bug\'.'], gallery: ['09_start_screen', '13_phone_start'] },
       ] },

@@ -1,5 +1,5 @@
 /* BlockRacers account (website). Eén account voor website en game.
-   Iedereen met een e-mailadres kan een account maken. Spelen kan alleen met een invite-code (max 200).
+   Iedereen met een e-mailadres kan een account maken. Account 1 t/m 200 wordt automatisch goedgekeurd (actie claim in Edge Function invites), daarna wachtlijst.
    Sessie: cookies op .blockracers.online, gedeeld met game.blockracers.online.
    sharedStore() is gelijk aan die in BlockRacers/src/game/net.js: houd ze gelijk. */
 (function () {
@@ -22,8 +22,11 @@
     resetSent: function (e) { return 'Als er een account is op ' + e + ', krijg je een code van 6 cijfers. Vul hem in, daarna kies je een nieuw wachtwoord.'; },
     sendCode: 'Stuur me een code',
     who: 'Ingelogd als', logout: 'Uitloggen',
-    access: 'Game-toegang',
-    used: 'Je hebt game-toegang. Gas erop!', play: 'Speel nu',
+    access: 'Beta-status',
+    used: 'Goedgekeurd', play: 'Speel nu',
+    noRights: 'Er kunnen geen rechten aan ontleend worden.',
+    full: 'Beta vol, je staat op de wachtlijst.',
+    busy: 'Je goedkeuring wordt verwerkt. Kom straks terug of log opnieuw in.',
     sent: 'Je invite-code is verstuurd. Vul de code uit de mail in (BR-XXXX-XXXX). Onder 16? Dan kreeg je ouder of verzorger de code.',
     useCode: 'Code gebruiken',
     pending: 'Je staat op de wachtlijst. We laten spelers in groepjes toe en mailen je code zodra je aan de beurt bent.',
@@ -61,8 +64,11 @@
     resetSent: function (e) { return 'If there is an account for ' + e + ', you get a 6 digit code. Enter it, then choose a new password.'; },
     sendCode: 'Send me a code',
     who: 'Logged in as', logout: 'Log out',
-    access: 'Game access',
-    used: 'You have game access. Floor it!', play: 'Play now',
+    access: 'Beta status',
+    used: 'Approved', play: 'Play now',
+    noRights: 'No rights can be derived from this.',
+    full: 'Beta full, you\'re on the waitlist.',
+    busy: 'Your approval is being processed. Come back later or log in again.',
     sent: 'Your invite code was sent. Enter the code from the email (BR-XXXX-XXXX). Under 16? Then your parent or guardian got the code.',
     useCode: 'Use code',
     pending: 'You are on the waiting list. We let players in a few at a time and email your code when it is your turn.',
@@ -259,47 +265,50 @@
 
   /* ---- ingelogd: game-toegang en instellingen ---- */
   async function rpc(name, args) { var r = await sb.rpc(name, args || {}); if (r.error) throw r.error; return r.data; }
+  async function claim(token) {
+    try {
+      var r = await fetch(CFG.url + '/functions/v1/invites', { method: 'POST', headers: { 'content-type': 'application/json', authorization: 'Bearer ' + token, apikey: CFG.key }, body: JSON.stringify({ action: 'claim' }) });
+      return r.ok ? await r.json() : { status: 'pending', reason: 'error' };
+    } catch (e) { return { status: 'pending', reason: 'error' }; }
+  }
   async function showIn() {
     var s = await sb.auth.getSession(), user = s.data && s.data.session && s.data.session.user;
     if (!user) return showOut('login');
-    var status = 'none', spots = null;
+    var status = 'none', reason = '';
     try { status = await rpc('invite_status'); } catch (e) { status = 'error'; }
-    // Code uit de uitnodigingsmail: meteen inwisselen
-    if (invite && status === 'sent') {
-      try { var rr = await rpc('redeem_invite', { code: invite }); if (rr && rr.ok) { status = 'used'; say(T.ok.redeemed, true); } else say(rr && rr.error === 'full' ? T.e.full : T.e.invite); } catch (e) { say(errText(e)); }
+    var u16 = !!(user.user_metadata && user.user_metadata.under16);
+    // 16+: aanvraag vanzelf (toestemming gaf je bij account maken)
+    if (status === 'none' && !u16) try { await rpc('request_invite', { parent_email: null, is_under16: false, consent: true }); status = 'pending'; } catch (e) {}
+    // Automatische goedkeuring zolang er plek is. Code wordt aan het account gekoppeld, niemand vult hem in.
+    if (status === 'pending' || status === 'sent') {
+      var c = await claim(s.data.session.access_token);
+      if (c.status === 'approved') status = 'used'; else reason = c.reason || '';
     }
-    if (status === 'used' || status === 'error') { invite = ''; try { sessionStorage.removeItem('br.invite'); } catch (e) {} }
-    if (status === 'none' || status === 'rejected') try { spots = await rpc('game_spots_left'); } catch (e) {}
+    invite = ''; try { sessionStorage.removeItem('br.invite'); } catch (e) {}
 
     var card = h('section', { class: 'acc-card', 'aria-labelledby': 'accAccess' }, [h('h3', { id: 'accAccess', text: T.access })]);
     if (status === 'used') {
-      card.appendChild(h('p', { text: T.used }));
+      card.appendChild(h('p', { class: 'acc-ok' }, [h('b', { text: T.used })]));
       card.appendChild(h('a', { class: 'br-btn br-btn--primary', href: gameUrl(), text: T.play }));
-    } else if (status === 'sent') {
-      var ci = h('input', { class: 'acc-in acc-code', autocomplete: 'off', autocapitalize: 'characters', spellcheck: 'false', maxlength: '14', placeholder: 'BR-XXXX-XXXX', value: invite || '' }), cb;
-      ci.addEventListener('input', function () { var v = ci.value.toUpperCase().replace(/[^A-Z0-9]/g, ''); if (v.indexOf('BR') === 0) v = v.slice(2); v = v.slice(0, 8); ci.value = v ? 'BR-' + v.slice(0, 4) + (v.length > 4 ? '-' + v.slice(4) : '') : ''; });
-      card.appendChild(h('p', { text: T.sent }));
-      card.appendChild(h('form', { class: 'acc-form', novalidate: true, onsubmit: function (ev) {
-        ev.preventDefault();
-        run(cb, async function () { var r = await rpc('redeem_invite', { code: ci.value }); if (r && r.ok) { invite = ''; try { sessionStorage.removeItem('br.invite'); } catch (e) {} await showIn(); say(T.ok.redeemed, true); } else say(r && r.error === 'full' ? T.e.full : T.e.invite); });
-      } }, [ci, cb = h('button', { type: 'submit', class: 'br-btn br-btn--primary', text: T.useCode })]));
-    } else if (status === 'pending') {
+    } else if (status === 'pending' && reason === 'full') {
+      card.appendChild(h('p', { text: T.full }));
+    } else if (status === 'pending' && reason === 'parent') {
       card.appendChild(h('p', { text: T.pending }));
+    } else if (status === 'pending') {
+      card.appendChild(h('p', { text: T.busy }));
     } else if (status === 'error') {
       card.appendChild(h('p', { text: T.e.generic }));
-    } else {
-      card.appendChild(h('p', { text: status === 'rejected' ? T.rejected : T.none }));
-      if (spots != null) card.appendChild(h('p', { class: 'acc-spots', text: T.spots(spots) }));
-      if (status === 'none') {
-        var u16 = !!(user.user_metadata && user.user_metadata.under16);
-        var pe = h('input', { type: 'email', autocomplete: 'off', maxlength: '120', class: 'acc-in' }), ab;
-        card.appendChild(h('form', { class: 'acc-form', novalidate: true, onsubmit: function (ev) {
-          ev.preventDefault(); var p = pe.value.trim().toLowerCase();
-          if (u16 && (!EM.test(p) || p === (user.email || '').toLowerCase())) return say(T.e.parent);
-          run(ab, async function () { await rpc('request_invite', { parent_email: u16 ? p : null, is_under16: u16, consent: true }); await showIn(); say(T.ok.ask, true); });
-        } }, [u16 ? field(T.parentQ, pe) : null, ab = h('button', { type: 'submit', class: 'br-btn br-btn--primary', text: T.ask })]));
-      }
+    } else if (status === 'rejected') {
+      card.appendChild(h('p', { text: T.rejected }));
+    } else if (u16) {
+      var pe = h('input', { type: 'email', autocomplete: 'off', maxlength: '120', class: 'acc-in' }), ab;
+      card.appendChild(h('form', { class: 'acc-form', novalidate: true, onsubmit: function (ev) {
+        ev.preventDefault(); var p = pe.value.trim().toLowerCase();
+        if (!EM.test(p) || p === (user.email || '').toLowerCase()) return say(T.e.parent);
+        run(ab, async function () { await rpc('request_invite', { parent_email: p, is_under16: true, consent: true }); await showIn(); say(T.ok.ask, true); });
+      } }, [field(T.parentQ, pe), ab = h('button', { type: 'submit', class: 'br-btn br-btn--primary', text: T.ask })]));
     }
+    card.appendChild(h('p', { class: 'acc-note', text: T.noRights }));
 
     var a = pwInput('accChg1', 'new-password'), b = pwInput('accChg2', 'new-password'), sv;
     var settings = h('details', { class: 'acc-card' }, [h('summary', { text: T.settings }),
