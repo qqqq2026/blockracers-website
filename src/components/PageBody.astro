@@ -11,8 +11,8 @@ const c = page.content[lang];
   <div class="hero-inner">
     <h1>{c.title}</h1>
     <p>{c.sub}</p>
-    <a class="br-btn br-btn--primary" href={BETA_URL}>{UI[lang].play}</a>
-    <p class="cta-note">{UI[lang].testers}</p>
+    <a class="br-btn br-btn--primary" href={href(lang, 'account') + '?new=1'}>{UI[lang].play}</a>
+    <p class="cta-note br-spots">{UI[lang].testers}</p>
   </div>
   <div class="br-checker"></div>
 </section>
@@ -37,7 +37,7 @@ const c = page.content[lang];
       {s.links && <ul>{s.links.map((l) => <li><a href={l.href} rel="noopener">{l.label}</a></li>)}</ul>}
       {s.download && <p><a class="br-btn br-btn--primary" href={u(s.download.href)} download>{s.download.label}</a></p>}
       {s.soon && <p><button class="br-btn br-btn--primary" type="button" disabled>{UI[lang].soon}</button></p>}
-      {s.cta && <><p><a class="br-btn br-btn--primary" href={BETA_URL}>{UI[lang].play}</a></p><p class="cta-note">{UI[lang].testers}</p></>}
+      {s.cta && <><p><a class="br-btn br-btn--primary" href={href(lang, 'account') + '?new=1'}>{UI[lang].play}</a></p><p class="cta-note br-spots">{UI[lang].testers}</p></>}
     </div>
   </section>
 ))}
