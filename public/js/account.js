@@ -18,7 +18,7 @@
     consent: 'Ik ga akkoord met de privacyregels.', consentU16: 'Mijn ouder of verzorger weet ervan en vindt het goed.', privacy: 'Privacy',
     create: 'Account maken',
     codeSent: function (e) { return 'We hebben een code van 6 cijfers gestuurd naar ' + e + '. Vul hem hier in. Kijk ook in je spam. Al een account? Dan krijg je geen code, log dan gewoon in.'; },
-    codePh: 'Code uit de mail', confirm: 'Bevestigen', resend: 'Nieuwe code sturen', back: 'Terug',
+    newest: 'Gebruik altijd de nieuwste mail.', codePh: 'Code uit de mail', confirm: 'Bevestigen', resend: 'Nieuwe code sturen', back: 'Terug',
     resetSent: function (e) { return 'Als er een account is op ' + e + ', krijg je een code van 6 cijfers. Vul hem in, daarna kies je een nieuw wachtwoord.'; },
     sendCode: 'Stuur me een code',
     who: 'Ingelogd als', logout: 'Uitloggen',
@@ -60,7 +60,7 @@
     consent: 'I agree to the privacy rules.', consentU16: 'My parent or guardian knows and agrees.', privacy: 'Privacy',
     create: 'Create account',
     codeSent: function (e) { return 'We sent a 6 digit code to ' + e + '. Enter it here. Check your spam too. Already have an account? Then no code comes, just log in.'; },
-    codePh: 'Code from the email', confirm: 'Confirm', resend: 'Send a new code', back: 'Back',
+    newest: 'Always use the newest email.', codePh: 'Code from the email', confirm: 'Confirm', resend: 'Send a new code', back: 'Back',
     resetSent: function (e) { return 'If there is an account for ' + e + ', you get a 6 digit code. Enter it, then choose a new password.'; },
     sendCode: 'Send me a code',
     who: 'Logged in as', logout: 'Log out',
@@ -172,7 +172,11 @@
   function gameUrl() { return CFG.game || 'https://game.blockracers.online'; }
 
   /* ---- uitgelogd: inloggen of account maken ---- */
-  var resendAt = 0;
+  var resendAt = 0, PKEY = 'br_pending_verify';
+  // Openstaande bevestiging bewaren, zodat een refresh geen nieuwe code (en dus een dode oude code) oplevert.
+  function getPending() { try { var o = JSON.parse(sessionStorage.getItem(PKEY) || 'null'); return o && o.email && o.kind ? o : null; } catch (e) { return null; } }
+  function setPending(email, kind) { try { sessionStorage.setItem(PKEY, JSON.stringify({ email: email, kind: kind, resendAt: resendAt })); } catch (e) {} }
+  function clearPending() { try { sessionStorage.removeItem(PKEY); } catch (e) {} }
   function showOut(tab, email) {
     tab = tab || startTab;
     var em = h('input', { type: 'email', autocomplete: 'username email', maxlength: '120', class: 'acc-in', value: email || hintEmail || '' });
@@ -201,6 +205,9 @@
         if (p.length < 8) return say(T.e.pwShort);
         if (!age) return say(T.e.age);
         if (!cons.checked || (age === 'u16' && !consP.checked)) return say(T.e.consent);
+        var pend = getPending();
+        if (pend && pend.kind === 'signup' && pend.email === e) { resendAt = +pend.resendAt || 0; return showVerify(e, 'signup'); }
+        if (pend) clearPending();
         run(mk, async function () {
           var r = await sb.auth.signUp({ email: e, password: p, options: { emailRedirectTo: location.origin + location.pathname, data: { under16: age === 'u16', consent: true, consent_at: new Date().toISOString() } } });
           if (r.error) throw r.error;
@@ -218,6 +225,7 @@
 
   /* ---- code uit de mail (account bevestigen of wachtwoord vergeten) ---- */
   function showVerify(email, kind) {
+    setPending(email, kind);
     var code = h('input', { inputmode: 'numeric', autocomplete: 'one-time-code', maxlength: '10', class: 'acc-in acc-code', placeholder: T.codePh }), ok, rs;
     function tick() { var left = Math.ceil((resendAt - Date.now()) / 1000); rs.disabled = left > 0; rs.textContent = left > 0 ? T.resend + ' (' + left + ')' : T.resend; if (left > 0) setTimeout(tick, 1000); }
     var form = h('form', { class: 'acc-form', novalidate: true, onsubmit: function (ev) {
@@ -226,15 +234,16 @@
         var r = await sb.auth.verifyOtp({ email: email, token: c, type: 'email' });
         if (r.error && kind === 'signup') r = await sb.auth.verifyOtp({ email: email, token: c, type: 'signup' });
         if (r.error) throw r.error;
+        clearPending();
         if (kind === 'reset') showNewPw(); else await showIn();
       });
-    } }, [h('p', { class: 'acc-note', text: kind === 'reset' ? T.resetSent(email) : T.codeSent(email) }), code,
+    } }, [h('p', { class: 'acc-note', text: kind === 'reset' ? T.resetSent(email) : T.codeSent(email) }), h('p', { class: 'acc-note', text: T.newest }), code,
       ok = h('button', { type: 'submit', class: 'br-btn br-btn--primary', text: T.confirm }),
       h('div', { class: 'acc-row' }, [
         rs = h('button', { type: 'button', class: 'acc-link', text: T.resend, onclick: function () {
           run(rs, async function () {
             var r = kind === 'reset' ? await sb.auth.signInWithOtp({ email: email, options: { shouldCreateUser: false } }) : await sb.auth.resend({ type: 'signup', email: email });
-            if (r.error) throw r.error; resendAt = Date.now() + 60e3; tick(); say(T.ok.resent, true);
+            if (r.error) throw r.error; resendAt = Date.now() + 60e3; setPending(email, kind); tick(); say(T.ok.resent, true);
           });
         } }),
         h('button', { type: 'button', class: 'acc-link', text: T.back, onclick: function () { showOut(kind === 'reset' ? 'login' : 'new', email); } })])]);
@@ -272,6 +281,7 @@
     } catch (e) { return { status: 'pending', reason: 'error' }; }
   }
   async function showIn() {
+    clearPending();
     var s = await sb.auth.getSession(), user = s.data && s.data.session && s.data.session.user;
     if (!user) return showOut('login');
     var status = 'none', reason = '';
@@ -321,14 +331,14 @@
     word.addEventListener('input', function () { del.disabled = word.value.trim().toUpperCase() !== 'VERWIJDER'; });
     var danger = h('details', { class: 'acc-card acc-danger' }, [h('summary', { text: T.danger }), h('p', { text: T.dangerTxt }), word,
       del = h('button', { type: 'button', class: 'acc-del', disabled: true, text: T.del, onclick: function () {
-        run(del, async function () { await rpc('delete_my_account'); try { await sb.auth.signOut(); } catch (e) {} showOut('login'); say(T.ok.deleted, true); });
+        run(del, async function () { await rpc('delete_my_account'); clearPending(); try { await sb.auth.signOut(); } catch (e) {} showOut('login'); say(T.ok.deleted, true); });
       } })]);
     var lo;
     view([h('p', { class: 'acc-who' }, [T.who + ' ', h('b', { text: user.email || '' }), ' ',
-      lo = h('button', { type: 'button', class: 'acc-link', text: T.logout, onclick: function () { run(lo, async function () { await sb.auth.signOut(); showOut('login'); }); } })]),
+      lo = h('button', { type: 'button', class: 'acc-link', text: T.logout, onclick: function () { run(lo, async function () { clearPending(); await sb.auth.signOut(); showOut('login'); }); } })]),
       card, settings, danger]);
   }
 
-  sb.auth.getSession().then(function (r) { if (r.data && r.data.session) showIn().catch(function (e) { say(errText(e)); }); else showOut(startTab); })
+  sb.auth.getSession().then(function (r) { if (r.data && r.data.session) showIn().catch(function (e) { say(errText(e)); }); else { var pend = getPending(); if (pend) { resendAt = +pend.resendAt || 0; showVerify(pend.email, pend.kind); } else showOut(startTab); } })
     .catch(function () { showOut(startTab); });
 })();
