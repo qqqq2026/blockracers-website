@@ -300,6 +300,15 @@
     if (status === 'used') {
       card.appendChild(h('p', { class: 'acc-ok' }, [h('b', { text: T.used })]));
       card.appendChild(h('a', { class: 'br-btn br-btn--primary', href: gameUrl(), text: T.play }));
+    } else if (status === 'sent') {
+      // Onder 16: de ouder kreeg de code en beslist. Pas met die code krijgt het kind toegang.
+      var ci = h('input', { class: 'acc-in acc-code', autocomplete: 'off', autocapitalize: 'characters', spellcheck: 'false', maxlength: '14', placeholder: 'BR-XXXX-XXXX' }), cb;
+      ci.addEventListener('input', function () { var v = ci.value.toUpperCase().replace(/[^A-Z0-9]/g, ''); if (v.indexOf('BR') === 0) v = v.slice(2); v = v.slice(0, 8); ci.value = v ? 'BR-' + v.slice(0, 4) + (v.length > 4 ? '-' + v.slice(4) : '') : ''; });
+      card.appendChild(h('p', { text: T.sent }));
+      card.appendChild(h('form', { class: 'acc-form', novalidate: true, onsubmit: function (ev) {
+        ev.preventDefault();
+        run(cb, async function () { var r = await rpc('redeem_invite', { code: ci.value }); if (r && r.ok) { await showIn(); say(T.ok.redeemed, true); } else say(r && r.error === 'full' ? T.e.full : T.e.invite); });
+      } }, [ci, cb = h('button', { type: 'submit', class: 'br-btn br-btn--primary', text: T.useCode })]));
     } else if (status === 'pending' && reason === 'full') {
       card.appendChild(h('p', { text: T.full }));
     } else if (status === 'pending' && reason === 'parent') {
