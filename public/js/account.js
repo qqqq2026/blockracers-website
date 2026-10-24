@@ -14,7 +14,7 @@
     show: 'Toon', hide: 'Verberg',
     login: 'Inloggen', forgot: 'Wachtwoord vergeten?',
     newIntro: 'Gratis, voor iedereen met een e-mailadres. Met je account log je in op de website en in de game.',
-    ageRule: 'Leeftijd: minimaal 13 jaar. Je geboortejaar vul je in de game in. Ben je 13 t/m 15? Dan bevestigt je ouder per e-mail. Zonder bevestiging wordt je account na 7 dagen vanzelf verwijderd. Vanaf 16 geef je zelf toestemming.',
+    ageRule: 'Leeftijd: minimaal 13 jaar. Als je de game start, vul je je geboortejaar in en vink je de toestemming aan.',
     privacy: 'Privacy',
     create: 'Account maken',
     codeSent: function (e) { return 'We hebben een code van 6 cijfers gestuurd naar ' + e + '. Vul hem hier in. Kijk ook in je spam. Al een account? Dan krijg je geen code, log dan gewoon in.'; },
@@ -27,13 +27,12 @@
     noRights: 'Er kunnen geen rechten aan ontleend worden.',
     full: 'Beta vol, je staat op de wachtlijst.',
     busy: 'Je goedkeuring wordt verwerkt. Kom straks terug of log opnieuw in.',
-    sent: 'Je invite-code is verstuurd. Vul de code uit de mail in (BR-XXXX-XXXX). Onder 16? Dan kreeg je ouder of verzorger de code.',
+    sent: 'Je invite-code is verstuurd. Vul de code uit de mail in (BR-XXXX-XXXX).',
     useCode: 'Code gebruiken',
     pending: 'Je staat op de wachtlijst. We laten spelers in groepjes toe en mailen je code zodra je aan de beurt bent.',
     rejected: 'Je aanvraag is deze ronde niet gelukt. Je account blijft gewoon bestaan.',
     none: 'Spelen kan met een invite-code. Er zijn 200 plekken. Vraag je code hier aan.',
     spots: function (n) { return n > 0 ? 'Nog ' + n + ' van de 200 plekken vrij.' : 'Alle 200 plekken zijn bezet. Vraag toch aan, dan sta je op de wachtlijst.'; },
-    parentQ: 'E-mailadres van je ouder of verzorger. Die krijgt de invite-code en beslist.',
     ask: 'Vraag mijn invite-code aan',
     settings: 'Instellingen', changePw: 'Wachtwoord wijzigen', save: 'Opslaan',
     danger: 'Account verwijderen', dangerTxt: 'Je account, profiel, voortgang en aanvraag worden direct gewist. Typ VERWIJDER om te bevestigen.',
@@ -56,7 +55,7 @@
     show: 'Show', hide: 'Hide',
     login: 'Log in', forgot: 'Forgot password?',
     newIntro: 'Free, for anyone with an email address. Your account works on the website and in the game.',
-    ageRule: 'Age: 13 or older. You enter your birth year in the game. Are you 13 to 15? Then your parent confirms by email. Without confirmation your account is deleted automatically after 7 days. From 16 you give consent yourself.',
+    ageRule: 'Age: 13 or older. When you start the game, you enter your birth year and tick the consent box.',
     privacy: 'Privacy',
     create: 'Create account',
     codeSent: function (e) { return 'We sent a 6 digit code to ' + e + '. Enter it here. Check your spam too. Already have an account? Then no code comes, just log in.'; },
@@ -69,13 +68,12 @@
     noRights: 'No rights can be derived from this.',
     full: 'Beta full, you\'re on the waitlist.',
     busy: 'Your approval is being processed. Come back later or log in again.',
-    sent: 'Your invite code was sent. Enter the code from the email (BR-XXXX-XXXX). Under 16? Then your parent or guardian got the code.',
+    sent: 'Your invite code was sent. Enter the code from the email (BR-XXXX-XXXX).',
     useCode: 'Use code',
     pending: 'You are on the waiting list. We let players in a few at a time and email your code when it is your turn.',
     rejected: 'Your request did not make it this round. Your account stays.',
     none: 'Playing needs an invite code. There are 200 spots. Request your code here.',
     spots: function (n) { return n > 0 ? n + ' of 200 spots left.' : 'All 200 spots are taken. Request anyway to join the waiting list.'; },
-    parentQ: 'Email address of your parent or guardian. They get the invite code and decide.',
     ask: 'Request my invite code',
     settings: 'Settings', changePw: 'Change password', save: 'Save',
     danger: 'Delete account', dangerTxt: 'Your account, profile, progress and request are deleted right away. Type VERWIJDER to confirm.',
@@ -306,7 +304,7 @@
     if (!user) return showOut('login');
     var status = 'none', reason = '';
     try { status = await rpc('invite_status'); } catch (e) { status = 'error'; }
-    var u16 = !!(user.user_metadata && user.user_metadata.under16);
+    var u16 = false; // geen ouder-flow meer: leeftijd en toestemming regelt de game
     // 16+: aanvraag vanzelf (toestemming gaf je bij account maken)
     if (status === 'none' && !u16) try { await rpc('request_invite', { parent_email: null, is_under16: false, consent: true }); status = 'pending'; } catch (e) {}
     // Automatische goedkeuring zolang er plek is. Code wordt aan het account gekoppeld, niemand vult hem in.
@@ -330,13 +328,6 @@
       card.appendChild(h('p', { text: T.e.generic }));
     } else if (status === 'rejected') {
       card.appendChild(h('p', { text: T.rejected }));
-    } else if (u16) {
-      var pe = h('input', { type: 'email', autocomplete: 'off', maxlength: '120', class: 'acc-in' }), ab;
-      card.appendChild(h('form', { class: 'acc-form', novalidate: true, onsubmit: function (ev) {
-        ev.preventDefault(); var p = pe.value.trim().toLowerCase();
-        if (!EM.test(p) || p === (user.email || '').toLowerCase()) return say(T.e.parent);
-        run(ab, async function () { await rpc('request_invite', { parent_email: p, is_under16: true, consent: true }); await showIn(); say(T.ok.ask, true); });
-      } }, [field(T.parentQ, pe), ab = h('button', { type: 'submit', class: 'br-btn br-btn--primary', text: T.ask })]));
     }
     card.appendChild(h('p', { class: 'acc-note', text: T.noRights }));
 
