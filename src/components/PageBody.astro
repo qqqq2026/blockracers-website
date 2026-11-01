@@ -2,6 +2,8 @@
 import { PAGES, UI, INVITE, BETA_URL, mark, u, href, type Lang } from '../data/site';
 const SB_URL = import.meta.env.PUBLIC_SUPABASE_URL || 'https://jefgwbzqpskfvlvkpque.supabase.co';
 const SB_KEY = import.meta.env.PUBLIC_SUPABASE_ANON_KEY || '';
+// Optioneel: Cloudflare Turnstile site key (zelfde widget-aanpak als de game, TURNSTILE_SITE_KEY daar). Leeg = geen captcha.
+const TS_KEY = import.meta.env.PUBLIC_TURNSTILE_SITE_KEY || '';
 interface Props { lang: Lang; pageKey: string }
 const { lang, pageKey } = Astro.props;
 const page = PAGES.find((p) => p.key === pageKey)!;
@@ -18,7 +20,7 @@ const c = page.content[lang];
 </section>
 {c.account && (
   <section class="block"><div class="wrap">
-    <div id="br-account" class="acc" data-lang={lang} data-url={SB_URL} data-key={SB_KEY} data-game={BETA_URL} data-privacy={href(lang, PAGES.find((p) => p.key === 'parents')!.slug[lang])}><p class="acc-note">…</p></div>
+    <div id="br-account" class="acc" data-lang={lang} data-url={SB_URL} data-key={SB_KEY} data-turnstile={TS_KEY || undefined} data-game={BETA_URL} data-privacy={href(lang, PAGES.find((p) => p.key === 'parents')!.slug[lang])}><p class="acc-note">…</p></div>
     <noscript><p>{lang === 'nl' ? 'Zet JavaScript aan om in te loggen.' : 'Turn on JavaScript to log in.'}</p></noscript>
     <script is:inline src={u('/vendor/supabase.js')}></script>
     <script is:inline src={u('/js/account.js')}></script>
