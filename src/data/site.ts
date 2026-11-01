@@ -23,8 +23,8 @@ export const INVITE = {
   en: { btn: 'GO TO MY ACCOUNT', note: 'No account yet? Create one there for free.' },
 };
 export const UI = {
-  nl: { play: 'SPEEL DE BETA', testers: 'Beta met 200 plekken', tagline: 'Rijd. Race. Ontdek.', colofon: 'BlockRacers Studio is onderdeel van Grachten Holding B.V., KvK 90894502', soon: 'Aanmelden opent binnenkort', draft: 'CONCEPT: niet gepubliceerd. Teksten met markeringen zijn niet definitief.', game: 'De game', studio: 'De studio', account: 'Account', other: 'English', otherLang: 'en' as Lang },
-  en: { play: 'PLAY THE BETA', testers: 'Beta with 200 spots', tagline: 'Drive. Race. Explore.', colofon: 'BlockRacers Studio is part of Grachten Holding B.V., KvK 90894502', soon: 'Sign-up opens soon', draft: 'DRAFT: not published. Marked text is not final.', game: 'The game', studio: 'The studio', account: 'Account', other: 'Nederlands', otherLang: 'nl' as Lang },
+  nl: { play: 'SPEEL DE BETA', playFree: 'SPEEL GRATIS', pages: 'Meer',  testers: 'Beta met 200 plekken', tagline: 'Rijd. Race. Ontdek.', colofon: 'BlockRacers Studio is onderdeel van Grachten Holding B.V., KvK 90894502', soon: 'Aanmelden opent binnenkort', draft: 'CONCEPT: niet gepubliceerd. Teksten met markeringen zijn niet definitief.', game: 'De game', studio: 'De studio', account: 'Account', other: 'English', otherLang: 'en' as Lang },
+  en: { play: 'PLAY THE BETA', playFree: 'PLAY FREE', pages: 'More',  testers: 'Beta with 200 spots', tagline: 'Drive. Race. Explore.', colofon: 'BlockRacers Studio is part of Grachten Holding B.V., KvK 90894502', soon: 'Sign-up opens soon', draft: 'DRAFT: not published. Marked text is not final.', game: 'The game', studio: 'The studio', account: 'Account', other: 'Nederlands', otherLang: 'nl' as Lang },
 };
 
 // Prefix a site path with the Astro base ("/" live, "/blockracers-website-preview/" on preview).
@@ -32,7 +32,7 @@ export const u = (path: string) => import.meta.env.BASE_URL.replace(/\/$/, '') +
 const s = (n: string) => `/img/screenshots/${n}.png`;
 
 export const PAGES: Page[] = [
-  { key: 'home', slug: { nl: '', en: '' }, menu: { nl: 'Home', en: 'Home' }, hero: s('01_hero_street'),
+  { key: 'home', nav: false, slug: { nl: '', en: '' }, menu: { nl: 'Home', en: 'Home' }, hero: s('01_hero_street'),
     content: {
       nl: { title: 'RIJD. RACE. ONTDEK.', sub: 'Racen door Parkstad en Beekdaelen, gewoon in je browser.', sections: [
         { h: 'Zo werkt het', ul: ['Maak je avatar.', 'Upgrade je auto in de garage.', 'Rijd door Parkstad en Beekdaelen op echte kaarten.'] },
@@ -115,7 +115,7 @@ export const PAGES: Page[] = [
         { h: 'Never miss an update!', sky: true, p: ['You see new devlogs first on X and TikTok. Follow @BlockRacersGame! Under 13? Watch together with a parent.'], links: SOCIAL.game },
       ] },
     } },
-  { key: 'roadmap', slug: { nl: 'roadmap', en: 'roadmap' }, menu: { nl: 'Roadmap', en: 'Roadmap' }, hero: s('11_world_hud_desktop'),
+  { key: 'roadmap', nav: false, slug: { nl: 'roadmap', en: 'roadmap' }, menu: { nl: 'Roadmap', en: 'Roadmap' }, hero: s('11_world_hud_desktop'),
     content: {
       nl: { title: 'ROADMAP', sub: 'Waar we aan werken. Plannen kunnen veranderen.', sections: [
         { h: 'Volgorde', ul: ['1. Beta release', '2. Studio release (komt later op studio.blockracers.online)', '3. Scholen'], p: ['Geen datums. Plannen kunnen veranderen.'] },
@@ -178,7 +178,7 @@ export const PAGES: Page[] = [
         { h: 'Changes', p: ['This page can change. Last updated: 24 October 2026.'], gallery: ['02_players_avatars', '08_avatar_creator', '12_phone_driving'] },
       ] },
     } },
-  { key: 'studio', slug: { nl: 'studio', en: 'studio' }, menu: { nl: 'BlockRacers Studio', en: 'BlockRacers Studio' }, hero: s('01_hero_street'),
+  { key: 'studio', nav: false, slug: { nl: 'studio', en: 'studio' }, menu: { nl: 'BlockRacers Studio', en: 'BlockRacers Studio' }, hero: s('01_hero_street'),
     content: {
       nl: { title: 'BLOCKRACERS STUDIO', sub: 'Komt later.', sections: [
         { h: 'Komt later', p: ['De Studio komt later op studio.blockracers.online.'] },
@@ -193,7 +193,7 @@ export const PAGES: Page[] = [
         { h: 'Follow us', sky: true, p: ['Game: @BlockRacersGame. Studio: @BlkRacersHub. On X and TikTok.'], links: [...SOCIAL.game, ...SOCIAL.studio] },
       ] },
     } },
-  { key: 'education', slug: { nl: 'onderwijs', en: 'education' }, menu: { nl: 'Onderwijs', en: 'Education' }, hero: s('11_world_hud_desktop'),
+  { key: 'education', nav: false, slug: { nl: 'onderwijs', en: 'education' }, menu: { nl: 'Onderwijs', en: 'Education' }, hero: s('11_world_hud_desktop'),
     content: {
       nl: { title: 'ONDERWIJS', sub: 'BlockRacers in de klas.', sections: [
         { h: 'Komt later', p: ['BlockRacers voor scholen komt later, na de beta en de studio release.'], gallery: ['10_garage_clean', '11_world_hud_desktop'] },
@@ -202,7 +202,7 @@ export const PAGES: Page[] = [
         { h: 'Coming later', p: ['BlockRacers for schools comes later, after the beta and the studio release.'], gallery: ['10_garage_clean', '11_world_hud_desktop'] },
       ] },
     } },
-  { key: 'press', slug: { nl: 'pers', en: 'press' }, menu: { nl: 'Pers', en: 'Press' }, hero: s('04_jet_over_city'),
+  { key: 'press', nav: false, slug: { nl: 'pers', en: 'press' }, menu: { nl: 'Pers', en: 'Press' }, hero: s('04_jet_over_city'),
     content: {
       nl: { title: 'PERS', sub: 'Alles voor journalisten en makers op een plek.', sections: [
         { h: 'Feiten', ul: ['Game: BlockRacers', 'Studio: BlockRacers Studio (Grachten Holding B.V., KvK 90894502)', 'Website: www.blockracers.online', 'Game (beta): game.blockracers.online, invite-only, 200 testers', 'Studio: studio.blockracers.online (komt later)', 'Platform: browser (web-app), telefoon, tablet en computer', 'Leeftijdsadvies: 8+'] },
