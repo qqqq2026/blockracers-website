@@ -1,5 +1,5 @@
 // Home page copy (conversion layout). Facts only from site.ts and the game; no invented features, numbers or quotes.
-// Rules: Dutch first, then English, no em or en dashes, legal or safety text marked [LAWYER REVIEW].
+// Rules: Dutch first, then English, no em or en dashes, legal or safety text marked with a // [LAWYER REVIEW] source comment (never visible).
 import type { Lang } from './site';
 
 export type HomeCard = { img: string; icon: 'map' | 'flag' | 'star' | 'people'; color: string; h: string; p: string };
@@ -37,8 +37,9 @@ export const HOME: Record<Lang, HomeCopy> = {
     steps: ['Maak gratis een account.', 'Bevestig je e-mail met de code uit de mail.', 'Goedgekeurd? Klik op Speel nu.'],
     stepsNote: 'De eerste 200 accounts worden automatisch goedgekeurd. Daarna kom je op de wachtlijst.',
     parentsH: 'VOOR OUDERS',
-    parentsSub: 'Eerlijk uitgelegd. [LAWYER REVIEW]',
-    parents: ['Vanaf 13 jaar [LAWYER REVIEW]', 'Geen vrije chat, alleen vaste berichten', 'Geen reclame en niets te koop', 'Geen trackers van derden', 'Gegevens opgeslagen in de EU', 'Meldknop in de game'],
+    // [LAWYER REVIEW] parentsSub and parents[0] (age 13+) need legal review.
+    parentsSub: 'Eerlijk uitgelegd.',
+    parents: ['Vanaf 13 jaar', 'Geen vrije chat, alleen vaste berichten', 'Geen reclame en niets te koop', 'Geen trackers van derden', 'Gegevens opgeslagen in de EU', 'Meldknop in de game'],
     parentsBtn: 'Lees Ouders en privacy',
     finalH: 'KLAAR VOOR DE START?',
     finalSub: 'Maak gratis je account en spring in de auto.',
@@ -65,8 +66,9 @@ export const HOME: Record<Lang, HomeCopy> = {
     steps: ['Create a free account.', 'Confirm your email with the code from the email.', 'Approved? Click Play now.'],
     stepsNote: 'The first 200 accounts are approved automatically. After that you join the waitlist.',
     parentsH: 'FOR PARENTS',
-    parentsSub: 'Explained honestly. [LAWYER REVIEW]',
-    parents: ['Ages 13 and up [LAWYER REVIEW]', 'No free chat, only set messages', 'No ads and nothing to buy', 'No third-party trackers', 'Data stored in the EU', 'Report button in the game'],
+    // [LAWYER REVIEW] parentsSub and parents[0] (age 13+) need legal review.
+    parentsSub: 'Explained honestly.',
+    parents: ['Ages 13 and up', 'No free chat, only set messages', 'No ads and nothing to buy', 'No third-party trackers', 'Data stored in the EU', 'Report button in the game'],
     parentsBtn: 'Read Parents and privacy',
     finalH: 'READY TO START?',
     finalSub: 'Create your free account and jump in the car.',
