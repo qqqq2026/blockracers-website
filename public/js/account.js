@@ -14,8 +14,8 @@
     show: 'Toon', hide: 'Verberg',
     login: 'Inloggen', forgot: 'Wachtwoord vergeten?',
     newIntro: 'Gratis, voor iedereen met een e-mailadres. Met je account log je in op de website en in de game.',
-    age16: 'Ik ben 16 jaar of ouder', ageU16: 'Ik ben jonger dan 16',
-    consent: 'Ik ga akkoord met de privacyregels.', consentU16: 'Mijn ouder of verzorger weet ervan en vindt het goed.', privacy: 'Privacy',
+    ageRule: 'Leeftijd: minimaal 13 jaar. Als je de game start, vul je je geboortejaar in en vink je de toestemming aan.',
+    privacy: 'Privacy',
     create: 'Account maken',
     codeSent: function (e) { return 'We hebben een code van 6 cijfers gestuurd naar ' + e + '. Vul hem hier in. Kijk ook in je spam. Al een account? Dan krijg je geen code, log dan gewoon in.'; },
     newest: 'Gebruik altijd de nieuwste mail.', codePh: 'Code uit de mail', confirm: 'Bevestigen', resend: 'Nieuwe code sturen', back: 'Terug',
@@ -27,20 +27,19 @@
     noRights: 'Er kunnen geen rechten aan ontleend worden.',
     full: 'Beta vol, je staat op de wachtlijst.',
     busy: 'Je goedkeuring wordt verwerkt. Kom straks terug of log opnieuw in.',
-    sent: 'Je invite-code is verstuurd. Vul de code uit de mail in (BR-XXXX-XXXX). Onder 16? Dan kreeg je ouder of verzorger de code.',
+    sent: 'Je invite-code is verstuurd. Vul de code uit de mail in (BR-XXXX-XXXX).',
     useCode: 'Code gebruiken',
     pending: 'Je staat op de wachtlijst. We laten spelers in groepjes toe en mailen je code zodra je aan de beurt bent.',
     rejected: 'Je aanvraag is deze ronde niet gelukt. Je account blijft gewoon bestaan.',
     none: 'Spelen kan met een invite-code. Er zijn 200 plekken. Vraag je code hier aan.',
     spots: function (n) { return n > 0 ? 'Nog ' + n + ' van de 200 plekken vrij.' : 'Alle 200 plekken zijn bezet. Vraag toch aan, dan sta je op de wachtlijst.'; },
-    parentQ: 'E-mailadres van je ouder of verzorger. Die krijgt de invite-code en beslist.',
     ask: 'Vraag mijn invite-code aan',
     settings: 'Instellingen', changePw: 'Wachtwoord wijzigen', save: 'Opslaan',
     danger: 'Account verwijderen', dangerTxt: 'Je account, profiel, voortgang en aanvraag worden direct gewist. Typ VERWIJDER om te bevestigen.',
     del: 'Ja, verwijder mijn account',
     e: {
       email: 'Vul een geldig e-mailadres in.', pwShort: 'Je wachtwoord moet minstens 8 tekens hebben.', pwSame: 'De twee wachtwoorden zijn niet hetzelfde.',
-      age: 'Kies je leeftijd.', consent: 'Vink eerst de toestemming aan.', login: 'E-mail of wachtwoord klopt niet.',
+      captcha: 'Bevestig eerst dat je geen robot bent.', login: 'E-mail of wachtwoord klopt niet.',
       notConfirmed: 'Bevestig eerst je e-mailadres met de code uit de mail.', code: 'Die code klopt niet of is verlopen. Gebruik de nieuwste mail.',
       rate: 'Te veel pogingen. Wacht een paar minuten en probeer opnieuw.', parent: 'Vul het e-mailadres van je ouder of verzorger in (niet je eigen).',
       invite: 'Die code klopt niet bij dit account. Gebruik de code uit de nieuwste uitnodigingsmail.',
@@ -56,8 +55,8 @@
     show: 'Show', hide: 'Hide',
     login: 'Log in', forgot: 'Forgot password?',
     newIntro: 'Free, for anyone with an email address. Your account works on the website and in the game.',
-    age16: 'I am 16 or older', ageU16: 'I am under 16',
-    consent: 'I agree to the privacy rules.', consentU16: 'My parent or guardian knows and agrees.', privacy: 'Privacy',
+    ageRule: 'Age: 13 or older. When you start the game, you enter your birth year and tick the consent box.',
+    privacy: 'Privacy',
     create: 'Create account',
     codeSent: function (e) { return 'We sent a 6 digit code to ' + e + '. Enter it here. Check your spam too. Already have an account? Then no code comes, just log in.'; },
     newest: 'Always use the newest email.', codePh: 'Code from the email', confirm: 'Confirm', resend: 'Send a new code', back: 'Back',
@@ -69,20 +68,19 @@
     noRights: 'No rights can be derived from this.',
     full: 'Beta full, you\'re on the waitlist.',
     busy: 'Your approval is being processed. Come back later or log in again.',
-    sent: 'Your invite code was sent. Enter the code from the email (BR-XXXX-XXXX). Under 16? Then your parent or guardian got the code.',
+    sent: 'Your invite code was sent. Enter the code from the email (BR-XXXX-XXXX).',
     useCode: 'Use code',
     pending: 'You are on the waiting list. We let players in a few at a time and email your code when it is your turn.',
     rejected: 'Your request did not make it this round. Your account stays.',
     none: 'Playing needs an invite code. There are 200 spots. Request your code here.',
     spots: function (n) { return n > 0 ? n + ' of 200 spots left.' : 'All 200 spots are taken. Request anyway to join the waiting list.'; },
-    parentQ: 'Email address of your parent or guardian. They get the invite code and decide.',
     ask: 'Request my invite code',
     settings: 'Settings', changePw: 'Change password', save: 'Save',
     danger: 'Delete account', dangerTxt: 'Your account, profile, progress and request are deleted right away. Type VERWIJDER to confirm.',
     del: 'Yes, delete my account',
     e: {
       email: 'Enter a valid email address.', pwShort: 'Your password needs at least 8 characters.', pwSame: 'The two passwords do not match.',
-      age: 'Choose your age.', consent: 'Please tick the consent box first.', login: 'Email or password is not right.',
+      captcha: 'Please confirm you are not a robot first.', login: 'Email or password is not right.',
       notConfirmed: 'Confirm your email first with the code from the email.', code: 'That code is wrong or expired. Use the newest email.',
       rate: 'Too many tries. Wait a few minutes and try again.', parent: 'Enter the email address of your parent or guardian (not your own).',
       invite: 'That code does not match this account. Use the code from the newest invite email.',
@@ -168,6 +166,28 @@
     if (/reauth|nonce|recent/i.test(m)) return T.e.reauth;
     return T.e.generic;
   }
+  /* ---- optionele captcha (Cloudflare Turnstile). Alleen actief als PUBLIC_TURNSTILE_SITE_KEY bij de build gezet is. ---- */
+  var CAP_KEY = CFG.turnstile || '', capId = null, capLoad = null;
+  function capLib() {
+    if (!CAP_KEY) return null;
+    if (!capLoad) capLoad = new Promise(function (ok, no) { var sc = document.createElement('script'); sc.src = 'https://challenges.cloudflare.com/turnstile/v0/api.js?render=explicit'; sc.async = true; sc.onload = ok; sc.onerror = no; document.head.appendChild(sc); });
+    return capLoad;
+  }
+  function capBox() {
+    if (!CAP_KEY) return null;
+    var box = h('div', { class: 'acc-captcha' });
+    capLib().then(function () { if (!box.isConnected || !window.turnstile) return; capId = window.turnstile.render(box, { sitekey: CAP_KEY, language: NL ? 'nl' : 'en' }); }).catch(function () {});
+    return box;
+  }
+  // Geen sleutel: null (gedrag ongewijzigd). Sleutel maar nog geen token: false. Anders het token (eenmalig, widget wordt gereset).
+  function captchaToken() {
+    if (!CAP_KEY) return null;
+    var t = window.turnstile && capId != null ? window.turnstile.getResponse(capId) : '';
+    if (!t) return false;
+    try { window.turnstile.reset(capId); } catch (e) {}
+    return t;
+  }
+  function capOpt(o, cap) { if (cap) o.captchaToken = cap; return o; }
   function view(nodes) { root.textContent = ''; root.appendChild(msgEl); nodes.forEach(function (n) { if (n) root.appendChild(n); }); }
   function gameUrl() { return CFG.game || 'https://game.blockracers.online'; }
 
@@ -189,34 +209,29 @@
       var form = h('form', { class: 'acc-form', novalidate: true, onsubmit: function (ev) {
         ev.preventDefault(); var e = em.value.trim().toLowerCase(), p = pw.firstChild.value;
         if (!EM.test(e)) return say(T.e.email); if (!p) return say(T.e.login);
-        run(go, async function () { var r = await sb.auth.signInWithPassword({ email: e, password: p }); if (r.error) throw r.error; await showIn(); });
-      } }, [field(T.email, em), field(T.pw, pw), go = h('button', { type: 'submit', class: 'br-btn br-btn--primary', text: T.login }),
+        var cap = captchaToken(); if (cap === false) return say(T.e.captcha);
+        run(go, async function () { var r = await sb.auth.signInWithPassword({ email: e, password: p, options: capOpt({}, cap) }); if (r.error) throw r.error; await showIn(); });
+      } }, [field(T.email, em), field(T.pw, pw), capBox(), go = h('button', { type: 'submit', class: 'br-btn br-btn--primary', text: T.login }),
         h('button', { type: 'button', class: 'acc-link', text: T.forgot, onclick: function () { showForgot(em.value.trim().toLowerCase()); } })]);
       view([tabs, form]);
     } else {
-      var pw1 = pwInput('accNewPw', 'new-password'), age = null, mk;
-      var r16 = h('input', { type: 'radio', name: 'accAge', value: 'o16' }), rU = h('input', { type: 'radio', name: 'accAge', value: 'u16' });
-      var cons = h('input', { type: 'checkbox' }), consP = h('input', { type: 'checkbox' });
-      var pBox = h('label', { class: 'acc-check', hidden: true }, [consP, ' ' + T.consentU16]);
-      [r16, rU].forEach(function (r) { r.addEventListener('change', function () { age = r.value; pBox.hidden = age !== 'u16'; }); });
+      var pw1 = pwInput('accNewPw', 'new-password'), mk;
       var form2 = h('form', { class: 'acc-form', novalidate: true, onsubmit: function (ev) {
         ev.preventDefault(); var e = em.value.trim().toLowerCase(), p = pw1.firstChild.value;
         if (!EM.test(e) || e.length > 120) return say(T.e.email);
         if (p.length < 8) return say(T.e.pwShort);
-        if (!age) return say(T.e.age);
-        if (!cons.checked || (age === 'u16' && !consP.checked)) return say(T.e.consent);
+        var cap = captchaToken(); if (cap === false) return say(T.e.captcha);
         var pend = getPending();
         if (pend && pend.kind === 'signup' && pend.email === e) { resendAt = +pend.resendAt || 0; return showVerify(e, 'signup'); }
         if (pend) clearPending();
         run(mk, async function () {
-          var r = await sb.auth.signUp({ email: e, password: p, options: { emailRedirectTo: location.origin + location.pathname, data: { under16: age === 'u16', consent: true, consent_at: new Date().toISOString() } } });
+          var r = await sb.auth.signUp({ email: e, password: p, options: capOpt({ emailRedirectTo: location.origin + location.pathname }, cap) });
           if (r.error) throw r.error;
           if (r.data && r.data.session) return showIn();
           resendAt = Date.now() + 60e3; showVerify(e, 'signup');
         });
       } }, [h('p', { class: 'acc-note', text: T.newIntro }), field(T.email, em), field(T.pwNew, pw1),
-        h('fieldset', { class: 'acc-age' }, [h('label', { class: 'acc-check' }, [r16, ' ' + T.age16]), h('label', { class: 'acc-check' }, [rU, ' ' + T.ageU16])]),
-        h('label', { class: 'acc-check' }, [cons, ' ' + T.consent + ' ', h('a', { href: CFG.privacy, target: '_blank', rel: 'noopener', text: T.privacy })]), pBox,
+        h('p', { class: 'acc-note' }, [T.ageRule + ' ', h('a', { href: CFG.privacy, target: '_blank', rel: 'noopener', text: T.privacy })]), capBox(),
         mk = h('button', { type: 'submit', class: 'br-btn br-btn--primary', text: T.create })]);
       view([tabs, form2]);
     }
@@ -226,23 +241,25 @@
   /* ---- code uit de mail (account bevestigen of wachtwoord vergeten) ---- */
   function showVerify(email, kind) {
     setPending(email, kind);
-    var code = h('input', { inputmode: 'numeric', autocomplete: 'one-time-code', maxlength: '10', class: 'acc-in acc-code', placeholder: T.codePh }), ok, rs;
+    var code = h('input', { inputmode: 'numeric', autocomplete: 'one-time-code', maxlength: '10', class: 'acc-in acc-code', placeholder: T.codePh }), ok, rs, capEl = capBox();
     function tick() { var left = Math.ceil((resendAt - Date.now()) / 1000); rs.disabled = left > 0; rs.textContent = left > 0 ? T.resend + ' (' + left + ')' : T.resend; if (left > 0) setTimeout(tick, 1000); }
     var form = h('form', { class: 'acc-form', novalidate: true, onsubmit: function (ev) {
       ev.preventDefault(); var c = code.value.replace(/\s/g, ''); if (c.length < 6) return say(T.e.code);
+      var cap = captchaToken(); if (cap === false) return say(T.e.captcha);
       run(ok, async function () {
-        var r = await sb.auth.verifyOtp({ email: email, token: c, type: 'email' });
-        if (r.error && kind === 'signup') r = await sb.auth.verifyOtp({ email: email, token: c, type: 'signup' });
+        var r = await sb.auth.verifyOtp({ email: email, token: c, type: 'email', options: capOpt({}, cap) });
+        if (r.error && kind === 'signup') { var cap2 = captchaToken(); r = await sb.auth.verifyOtp({ email: email, token: c, type: 'signup', options: capOpt({}, cap2 || null) }); }
         if (r.error) throw r.error;
         clearPending();
         if (kind === 'reset') showNewPw(); else await showIn();
       });
-    } }, [h('p', { class: 'acc-note', text: kind === 'reset' ? T.resetSent(email) : T.codeSent(email) }), h('p', { class: 'acc-note', text: T.newest }), code,
+    } }, [h('p', { class: 'acc-note', text: kind === 'reset' ? T.resetSent(email) : T.codeSent(email) }), h('p', { class: 'acc-note', text: T.newest }), code, capEl,
       ok = h('button', { type: 'submit', class: 'br-btn br-btn--primary', text: T.confirm }),
       h('div', { class: 'acc-row' }, [
         rs = h('button', { type: 'button', class: 'acc-link', text: T.resend, onclick: function () {
+          var cap = captchaToken(); if (cap === false) return say(T.e.captcha);
           run(rs, async function () {
-            var r = kind === 'reset' ? await sb.auth.signInWithOtp({ email: email, options: { shouldCreateUser: false } }) : await sb.auth.resend({ type: 'signup', email: email });
+            var r = kind === 'reset' ? await sb.auth.signInWithOtp({ email: email, options: capOpt({ shouldCreateUser: false }, cap) }) : await sb.auth.resend({ type: 'signup', email: email, options: capOpt({}, cap) });
             if (r.error) throw r.error; resendAt = Date.now() + 60e3; setPending(email, kind); tick(); say(T.ok.resent, true);
           });
         } }),
@@ -253,12 +270,13 @@
     var em = h('input', { type: 'email', autocomplete: 'username email', maxlength: '120', class: 'acc-in', value: email || '' }), go;
     var form = h('form', { class: 'acc-form', novalidate: true, onsubmit: function (ev) {
       ev.preventDefault(); var e = em.value.trim().toLowerCase(); if (!EM.test(e)) return say(T.e.email);
+      var cap = captchaToken(); if (cap === false) return say(T.e.captcha);
       run(go, async function () {
-        var r = await sb.auth.signInWithOtp({ email: e, options: { shouldCreateUser: false } });
+        var r = await sb.auth.signInWithOtp({ email: e, options: capOpt({ shouldCreateUser: false }, cap) });
         if (r.error && !/signups not allowed|otp_disabled|not found/i.test(r.error.message || '')) throw r.error;
         resendAt = Date.now() + 60e3; showVerify(e, 'reset');
       });
-    } }, [h('h3', { text: T.forgot }), field(T.email, em), go = h('button', { type: 'submit', class: 'br-btn br-btn--primary', text: T.sendCode }),
+    } }, [h('h3', { text: T.forgot }), field(T.email, em), capBox(), go = h('button', { type: 'submit', class: 'br-btn br-btn--primary', text: T.sendCode }),
       h('button', { type: 'button', class: 'acc-link', text: T.back, onclick: function () { showOut('login', em.value.trim()); } })]);
     view([form]); em.focus();
   }
@@ -286,7 +304,7 @@
     if (!user) return showOut('login');
     var status = 'none', reason = '';
     try { status = await rpc('invite_status'); } catch (e) { status = 'error'; }
-    var u16 = !!(user.user_metadata && user.user_metadata.under16);
+    var u16 = false; // geen ouder-flow meer: leeftijd en toestemming regelt de game
     // 16+: aanvraag vanzelf (toestemming gaf je bij account maken)
     if (status === 'none' && !u16) try { await rpc('request_invite', { parent_email: null, is_under16: false, consent: true }); status = 'pending'; } catch (e) {}
     // Automatische goedkeuring zolang er plek is. Code wordt aan het account gekoppeld, niemand vult hem in.
@@ -310,13 +328,6 @@
       card.appendChild(h('p', { text: T.e.generic }));
     } else if (status === 'rejected') {
       card.appendChild(h('p', { text: T.rejected }));
-    } else if (u16) {
-      var pe = h('input', { type: 'email', autocomplete: 'off', maxlength: '120', class: 'acc-in' }), ab;
-      card.appendChild(h('form', { class: 'acc-form', novalidate: true, onsubmit: function (ev) {
-        ev.preventDefault(); var p = pe.value.trim().toLowerCase();
-        if (!EM.test(p) || p === (user.email || '').toLowerCase()) return say(T.e.parent);
-        run(ab, async function () { await rpc('request_invite', { parent_email: p, is_under16: true, consent: true }); await showIn(); say(T.ok.ask, true); });
-      } }, [field(T.parentQ, pe), ab = h('button', { type: 'submit', class: 'br-btn br-btn--primary', text: T.ask })]));
     }
     card.appendChild(h('p', { class: 'acc-note', text: T.noRights }));
 
