@@ -1,5 +1,5 @@
 // All page copy lives here. Source: website-kit fritz_draft_v1.md (DRAFT).
-// Rules: no invented facts, keep [TBD Daniel] and markers visible, no em or en dashes.
+// Rules: no invented facts, keep [TBD Daniel] visible, [LAWYER REVIEW] only as source comments, no em or en dashes.
 
 export type Lang = 'nl' | 'en';
 export type Section = { h: string; p?: string[]; ul?: string[]; gallery?: string[]; sky?: boolean; cta?: boolean; invite?: boolean; soon?: boolean; links?: { label: string; href: string }[]; download?: { label: string; href: string } };
@@ -146,10 +146,14 @@ export const PAGES: Page[] = [
   { key: 'parents', slug: { nl: 'ouders-en-privacy', en: 'parents-and-privacy' }, menu: { nl: 'Ouders en privacy', en: 'Parents and privacy' }, hero: s('02_players_avatars'),
     content: {
       nl: { title: 'OUDERS EN PRIVACY', sub: 'Jij bepaalt wat veilig voelt. Wij leggen het eerlijk uit.', sections: [
-        { h: 'Kort en eerlijk', p: ['[LAWYER REVIEW] BlockRacers is een gratis beta voor 13+. De eerste 200 accounts worden automatisch goedgekeurd, daarna kom je op de wachtlijst. Spelers rijden door Parkstad en Beekdaelen, racen en upgraden hun auto. Geen vrije chat, geen reclame, geen trackers van derden.'] },
-        { h: 'Welke gegevens slaan we op?', p: ['[LAWYER REVIEW] De game draait op Supabase, in de EU (Frankfurt).'], ul: ['Account: e-mailadres, wanneer je inlogt en technische sessiegegevens.', 'Leeftijd: alleen je geboortejaar, nooit een volledige datum.', 'Profiel, zichtbaar voor andere spelers: bijnaam (max 16 tekens, geen echte namen), avatar, coins, level, beste tijden en datums.', 'Saves, alleen voor jou: voortgang, garage, upgrades en instellingen.', 'Meldingen: wie wie meldt, een reden (naam, gedrag, bug, anders), een korte notitie van max 300 tekens, status en datum.', 'Live rijden: je positie gaat live naar andere spelers en wordt niet opgeslagen.'] },
-        { h: 'Account en beta', p: ['[LAWYER REVIEW] Iedereen vanaf 13 jaar kan gratis een account maken. De eerste 200 accounts worden automatisch goedgekeurd, daarna kom je op de wachtlijst. We bewaren je e-mailadres en je plek in de beta, opgeslagen in de EU. Verwijder je je account, dan wissen we ook je aanmelding.'] },
-        { h: 'E-mail', p: ['[LAWYER REVIEW] Bevestigingscodes en codes voor Wachtwoord vergeten sturen we per e-mail via Resend.'] },
+        // [LAWYER REVIEW]
+        { h: 'Kort en eerlijk', p: ['BlockRacers is een gratis beta voor 13+. De eerste 200 accounts worden automatisch goedgekeurd, daarna kom je op de wachtlijst. Spelers rijden door Parkstad en Beekdaelen, racen en upgraden hun auto. Geen vrije chat, geen reclame, geen trackers van derden.'] },
+        // [LAWYER REVIEW]
+        { h: 'Welke gegevens slaan we op?', p: ['De game draait op Supabase, in de EU (Frankfurt).'], ul: ['Account: e-mailadres, wanneer je inlogt en technische sessiegegevens.', 'Leeftijd: alleen je geboortejaar, nooit een volledige datum.', 'Profiel, zichtbaar voor andere spelers: bijnaam (max 16 tekens, geen echte namen), avatar, coins, level, beste tijden en datums.', 'Saves, alleen voor jou: voortgang, garage, upgrades en instellingen.', 'Meldingen: wie wie meldt, een reden (naam, gedrag, bug, anders), een korte notitie van max 300 tekens, status en datum.', 'Live rijden: je positie gaat live naar andere spelers en wordt niet opgeslagen.'] },
+        // [LAWYER REVIEW]
+        { h: 'Account en beta', p: ['Iedereen vanaf 13 jaar kan gratis een account maken. De eerste 200 accounts worden automatisch goedgekeurd, daarna kom je op de wachtlijst. We bewaren je e-mailadres en je plek in de beta, opgeslagen in de EU. Verwijder je je account, dan wissen we ook je aanmelding.'] },
+        // [LAWYER REVIEW]
+        { h: 'E-mail', p: ['Bevestigingscodes en codes voor Wachtwoord vergeten sturen we per e-mail via Resend.'] },
         { h: 'Wat kunnen spelers met elkaar doen?', p: ['Samen rijden in de wereld. Alleen ingelogde spelers die niet zijn uitgesloten door de studio kunnen meedoen. Er is geen vrije chat, alleen vaste berichten om uit te kiezen.'] },
         { h: 'Veiligheid', p: ['Zie je iets wat niet klopt? Meld een speler in de game. Kies een reden: naam, gedrag, bug of anders. De studio bekijkt meldingen en kan spelers verbergen of uitsluiten.'] },
         { h: 'Gegevens verwijderen', p: ['In de game: Start > Gevarenzone > Account verwijderen, bevestig met VERWIJDER. Je profiel, voortgang in de cloud en je meldingen worden direct gewist. Zie de pagina Account.'] },
@@ -157,15 +161,21 @@ export const PAGES: Page[] = [
         { h: 'Cookies en trackers', p: ['Deze website gebruikt geen analytics en geen trackers van derden.'] },
         { h: 'Wat kun jij als ouder doen?', ul: ['Speel een keer samen met je kind.', 'Praat over wat je kind online doet.', 'Zie je iets vervelends? Meld het in de game.'], p: ['Wil je je gegevens inzien of laten verwijderen? Verwijder je account in de game.'] },
         { h: 'Wie is verantwoordelijk?', p: ['BlockRacers Studio is onderdeel van Grachten Holding B.V., KvK 90894502.'] },
-        { h: 'Leeftijd', p: ['[LAWYER REVIEW] Minimumleeftijd: 13 jaar. Als je de game start, vul je je geboortejaar in en geef je toestemming met een vinkje. We bewaren alleen je geboortejaar, nooit een volledige datum.'] },
-        { h: 'Privacyverklaring', p: ['[LAWYER REVIEW] Volledige privacyverklaring (AVG): komt later. Concept, niet definitief.'] },
+        // [LAWYER REVIEW]
+        { h: 'Leeftijd', p: ['Minimumleeftijd: 13 jaar. Als je de game start, vul je je geboortejaar in en geef je toestemming met een vinkje. We bewaren alleen je geboortejaar, nooit een volledige datum.'] },
+        // [LAWYER REVIEW] Visible note "Concept, niet definitief." removed; text is still a draft.
+        { h: 'Privacyverklaring', p: ['Volledige privacyverklaring (AVG): komt later.'] },
         { h: 'Wijzigingen', p: ['Deze pagina kan veranderen. Laatst bijgewerkt: 24 oktober 2026.'], gallery: ['02_players_avatars', '08_avatar_creator', '12_phone_driving'] },
       ] },
       en: { title: 'PARENTS AND PRIVACY', sub: 'You decide what feels safe. We explain it honestly.', sections: [
-        { h: 'Short and honest', p: ['[LAWYER REVIEW] BlockRacers is a free beta for ages 13+. The first 200 accounts are approved automatically, after that you join the waitlist. Players drive through Parkstad and Beekdaelen, race and upgrade their car. No free chat, no ads, no third-party trackers.'] },
-        { h: 'What data do we store?', p: ['[LAWYER REVIEW] The game runs on Supabase, in the EU (Frankfurt).'], ul: ['Account: email address, when you log in and technical session data.', 'Age: only your birth year, never a full date.', 'Profile, visible to other players: nickname (max 16 characters, no real names), avatar, coins, level, best times and dates.', 'Saves, only for you: progress, garage, upgrades and settings.', 'Reports: who reports whom, a reason (name, behaviour, bug, other), a short note of max 300 characters, status and date.', 'Live driving: your position is sent live to other players and is not stored.'] },
-        { h: 'Account and beta', p: ['[LAWYER REVIEW] Anyone aged 13 or older can create a free account. The first 200 accounts are approved automatically, after that you join the waitlist. We store your email address and your beta spot, stored in the EU. Delete your account and we delete your sign-up too.'] },
-        { h: 'Email', p: ['[LAWYER REVIEW] We send confirmation codes and Forgot password codes by email through Resend.'] },
+        // [LAWYER REVIEW]
+        { h: 'Short and honest', p: ['BlockRacers is a free beta for ages 13+. The first 200 accounts are approved automatically, after that you join the waitlist. Players drive through Parkstad and Beekdaelen, race and upgrade their car. No free chat, no ads, no third-party trackers.'] },
+        // [LAWYER REVIEW]
+        { h: 'What data do we store?', p: ['The game runs on Supabase, in the EU (Frankfurt).'], ul: ['Account: email address, when you log in and technical session data.', 'Age: only your birth year, never a full date.', 'Profile, visible to other players: nickname (max 16 characters, no real names), avatar, coins, level, best times and dates.', 'Saves, only for you: progress, garage, upgrades and settings.', 'Reports: who reports whom, a reason (name, behaviour, bug, other), a short note of max 300 characters, status and date.', 'Live driving: your position is sent live to other players and is not stored.'] },
+        // [LAWYER REVIEW]
+        { h: 'Account and beta', p: ['Anyone aged 13 or older can create a free account. The first 200 accounts are approved automatically, after that you join the waitlist. We store your email address and your beta spot, stored in the EU. Delete your account and we delete your sign-up too.'] },
+        // [LAWYER REVIEW]
+        { h: 'Email', p: ['We send confirmation codes and Forgot password codes by email through Resend.'] },
         { h: 'What can players do with each other?', p: ['Drive together in the world. Only logged-in players who are not banned by the studio can join. There is no free chat, only set messages to pick from.'] },
         { h: 'Safety', p: ['See something wrong? Report a player in the game. Pick a reason: name, behaviour, bug or other. The studio reviews reports and can hide or ban players.'] },
         { h: 'Deleting data', p: ['In the game: Start > Danger zone > Delete account, confirm with VERWIJDER. Your profile, cloud progress and your reports are deleted right away. See the Account page.'] },
@@ -173,8 +183,10 @@ export const PAGES: Page[] = [
         { h: 'Cookies and trackers', p: ['This website uses no analytics and no third-party trackers.'] },
         { h: 'What can you do as a parent?', ul: ['Play together with your child once.', 'Talk about what your child does online.', 'See something bad? Report it in the game.'], p: ['Want to see or delete your data? Delete your account in the game.'] },
         { h: 'Who is responsible?', p: ['BlockRacers Studio is part of Grachten Holding B.V., KvK 90894502.'] },
-        { h: 'Age', p: ['[LAWYER REVIEW] Minimum age: 13. When you start the game, you enter your birth year and give consent with a tick box. We only store your birth year, never a full date.'] },
-        { h: 'Privacy statement', p: ['[LAWYER REVIEW] Full privacy statement (GDPR): coming later. Draft, not final.'] },
+        // [LAWYER REVIEW]
+        { h: 'Age', p: ['Minimum age: 13. When you start the game, you enter your birth year and give consent with a tick box. We only store your birth year, never a full date.'] },
+        // [LAWYER REVIEW] Visible note "Draft, not final." removed; text is still a draft.
+        { h: 'Privacy statement', p: ['Full privacy statement (GDPR): coming later.'] },
         { h: 'Changes', p: ['This page can change. Last updated: 24 October 2026.'], gallery: ['02_players_avatars', '08_avatar_creator', '12_phone_driving'] },
       ] },
     } },
