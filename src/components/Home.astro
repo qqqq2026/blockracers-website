@@ -1,0 +1,98 @@
+---
+// Conversion-focused home page. One primary CTA per section, real screenshots only.
+import { PAGES, UI, mark, u, href, type Lang } from '../data/site';
+import { HOME } from '../data/home';
+interface Props { lang: Lang }
+const { lang } = Astro.props;
+const c = HOME[lang];
+const ui = UI[lang];
+const play = href(lang, 'account') + '?new=1';
+const parents = href(lang, PAGES.find((p) => p.key === 'parents')!.slug[lang]);
+const img = (n: string) => u(`/img/screenshots/web/${n}_1280.webp`);
+const srcset = (n: string) => `${u(`/img/screenshots/web/${n}_640.webp`)} 640w, ${u(`/img/screenshots/web/${n}_1280.webp`)} 1280w`;
+const icons: Record<string, string> = {
+  map: '<path d="M12 2a7 7 0 0 0-7 7c0 5 7 13 7 13s7-8 7-13a7 7 0 0 0-7-7zm0 9.5A2.5 2.5 0 1 1 12 6.5a2.5 2.5 0 0 1 0 5z"/>',
+  flag: '<path d="M5 2h2v20H5zM8 3h11l-2.5 4L19 11H8z"/>',
+  star: '<path d="M12 2l3 6.5 7 .8-5.2 4.8 1.5 7L12 17.5 5.7 21l1.5-7L2 9.3l7-.8z"/>',
+  people: '<path d="M8 11a4 4 0 1 0 0-8 4 4 0 0 0 0 8zm8 0a3 3 0 1 0 0-6 3 3 0 0 0 0 6zM1 21c0-4 3.1-7 7-7s7 3 7 7zm15 0c0-2.4-.8-4.5-2.2-6 .7-.3 1.4-.4 2.2-.4 3.3 0 6 2.6 6 6.4z"/>',
+};
+---
+<section class="h-hero" style={`--hero:url(${img('01_hero_street')})`}>
+  <div class="h-hero-in wrap">
+    <p class="h-live"><span class="h-dot" aria-hidden="true"></span><span class="br-spots">{ui.testers}</span></p>
+    <h1>{c.title}</h1>
+    <p class="h-sub">{c.sub}</p>
+    <div class="h-cta-row">
+      <a class="br-btn br-btn--primary h-btn-xl" href={play} data-hero-cta>{ui.play}</a>
+      <span class="h-cta-note">{c.ctaNote}</span>
+    </div>
+    <ul class="h-chips">{c.chips.map((t) => <li>{t}</li>)}</ul>
+  </div>
+  <div class="br-checker"></div>
+</section>
+
+<section class="h-sec">
+  <div class="wrap">
+    <h2>{c.featH}</h2>
+    <div class="h-cards">
+      {c.cards.map((k) => (
+        <article class="h-card h-reveal">
+          <div class="h-card-img"><img src={img(k.img)} srcset={srcset(k.img)} sizes="(min-width:900px) 25vw, 85vw" alt="" loading="lazy" /></div>
+          <div class="h-card-body">
+            <span class="h-icon" style={`background:${k.color}`} aria-hidden="true"><svg viewBox="0 0 24 24" set:html={icons[k.icon]} /></span>
+            <h3>{k.h}</h3>
+            <p>{k.p}</p>
+          </div>
+        </article>
+      ))}
+    </div>
+  </div>
+</section>
+
+<section class="h-sec h-sec--tight">
+  <div class="wrap">
+    <h2>{c.galH}</h2>
+    <div class="h-gallery">
+      {c.gallery.map((g) => <figure class="h-reveal"><img src={img(g.img)} srcset={srcset(g.img)} sizes="(min-width:900px) 33vw, 85vw" alt={g.alt} loading="lazy" /></figure>)}
+    </div>
+  </div>
+</section>
+
+<section class="h-sec">
+  <div class="wrap">
+    <h2>{c.stepsH}</h2>
+    <ol class="h-steps">{c.steps.map((t, i) => <li class="h-reveal"><span class="h-num" aria-hidden="true">{i + 1}</span><span>{t}</span></li>)}</ol>
+    <p class="h-small">{c.stepsNote}</p>
+  </div>
+</section>
+
+<section class="h-sec br-section--sky h-parents">
+  <div class="wrap">
+    <h2>{c.parentsH}</h2>
+    <p class="h-sub-dark" set:html={mark(c.parentsSub)} />
+    <ul class="h-trust">{c.parents.map((t) => <li set:html={mark(t)} />)}</ul>
+    <p><a class="br-btn br-btn--secondary h-btn-sec" href={parents}>{c.parentsBtn}</a></p>
+  </div>
+</section>
+
+<section class="h-final" style={`--hero:url(${img('03_loop_stunt')})`}>
+  <div class="wrap">
+    <h2>{c.finalH}</h2>
+    <p>{c.finalSub}</p>
+    <a class="br-btn br-btn--primary h-btn-xl" href={play}>{ui.play}</a>
+    <p class="h-live h-live--center"><span class="h-dot" aria-hidden="true"></span><span class="br-spots">{ui.testers}</span></p>
+  </div>
+</section>
+
+<script is:inline>(function(){
+  var d=document,hero=d.querySelector('[data-hero-cta]');
+  if(!('IntersectionObserver' in window))return;
+  d.documentElement.classList.add('js-home');
+  var heroIn=true;
+  function upd(){d.documentElement.classList.toggle('hero-out',!heroIn)}
+  if(hero)new IntersectionObserver(function(e){heroIn=e[0].isIntersecting;upd()}).observe(hero);
+  if(matchMedia('(prefers-reduced-motion: reduce)').matches)return;
+  d.documentElement.classList.add('js-reveal');
+  var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('is-in');io.unobserve(e.target)}})},{rootMargin:'0px 0px -8% 0px'});
+  d.querySelectorAll('.h-reveal').forEach(function(el,i){el.style.transitionDelay=(i%4)*70+'ms';io.observe(el)});
+})();</script>
